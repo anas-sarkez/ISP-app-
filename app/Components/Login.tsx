@@ -15,9 +15,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = () => {
-  const [checked, setChecked] = useState<
-    "unchecked" | "checked" | "indeterminate"
-  >("unchecked");
+  const [checked, setChecked] = useState<string>("unchecked");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const passwordTextInput = useRef<any>();
@@ -52,81 +50,86 @@ const Login = () => {
   }, []);
 
   return (
-    <ScrollView className="bg-white">
+    <View className="bg-white h-[98%]">
       <StatusBar barStyle={"dark-content"}></StatusBar>
       <SafeAreaView
         mode="margin"
         className="h-screen bg-white justify-self-end self-end bottom-0 w-full flex justify-around items-center"
       >
-        <Image
-          source={require("../../assets/images/home_logo.png")}
-          className="w-full h-60"
-        />
+        <View className="w-full h-[90%] flex-col justify-start items-center">
+          <Image
+            source={require("../../assets/images/home_logo.png")}
+            className=" w-[80%] h-[32%]"
+          />
+          <View className="w-full  h-[70%] -mt-[22%] justify-center items-center ">
+            <TextInput
+              mode="outlined"
+              label="Username"
+              placeholder="MyUsername"
+              className="bg-white mb-7 w-[80%]"
+              activeOutlineColor="#C0091E"
+              outlineColor="#C4C4C4"
+              placeholderTextColor="#C4C4C4"
+              textColor="#0F0017"
+              autoCapitalize="none"
+              value={username}
+              onChangeText={(e) => setUsername(e)}
+              onEndEditing={() => passwordTextInput.current?.focus()}
+              left={<TextInput.Icon icon="account-circle" color="#0F0017" />}
+            />
 
-        <TextInput
-          mode="outlined"
-          label="Username"
-          placeholder="MyUsername"
-          className="bg-white w-[80%]"
-          activeOutlineColor="#C0091E"
-          outlineColor="#C4C4C4"
-          placeholderTextColor="#C4C4C4"
-          textColor="#0F0017"
-          autoCapitalize="none"
-          value={username}
-          onChangeText={(e) => setUsername(e)}
-          onEndEditing={() => passwordTextInput.current?.focus()}
-          left={<TextInput.Icon icon="account-circle" color="#0F0017" />}
-        />
-
-        <TextInput
-          mode="outlined"
-          label="Password"
-          placeholder=" ************"
-          className="bg-white w-[80%]"
-          activeOutlineColor="#C0091E"
-          outlineColor="#C4C4C4"
-          placeholderTextColor="#C4C4C4"
-          textColor="#0F0017"
-          autoCapitalize="none"
-          value={password}
-          onChangeText={(e) => setPassword(e)}
-          ref={(input: any) => {
-            passwordTextInput.current = input;
-          }}
-          left={<TextInput.Icon icon="form-textbox-password" color="#0F0017" />}
-        />
-        <Button
-          onPress={handleSignIn}
-          mode="elevated"
-          className="disabled:border disabled:bg-red-500 disabled:border-[#C4C4C4] disabled:text-red-500"
-          buttonColor="#0F0017"
-          textColor="white"
-        >
-          Sign in
-        </Button>
-        <Checkbox.Item
-          mode={Platform.select({ ios: "ios", android: "android" })}
-          label="Keep me signed in"
-          status={checked}
-          onPress={(e) => {
-            setChecked((prev) => {
-              const next = prev === "unchecked" ? "checked" : "unchecked";
-              (async () => {
-                try {
-                  await AsyncStorage.setItem("my-key", next);
-                } catch (e) {
-                  console.log(e);
-                }
-              })();
-              return next;
-            });
-          }}
-          uncheckedColor="#0F0017"
-          color="#0F0017"
-        />
+            <TextInput
+              mode="outlined"
+              label="Password"
+              placeholder=" ************"
+              className="bg-white  mb-12 w-[80%]"
+              activeOutlineColor="#C0091E"
+              outlineColor="#C4C4C4"
+              placeholderTextColor="#C4C4C4"
+              textColor="#0F0017"
+              autoCapitalize="none"
+              value={password}
+              onChangeText={(e) => setPassword(e)}
+              ref={(input: any) => {
+                passwordTextInput.current = input;
+              }}
+              left={
+                <TextInput.Icon icon="form-textbox-password" color="#0F0017" />
+              }
+            />
+            <Button
+              onPress={handleSignIn}
+              mode="elevated"
+              className="disabled:border  mb-4 w-[40%] disabled:bg-red-500 disabled:border-[#C4C4C4] disabled:text-red-500"
+              buttonColor="#0F0017"
+              textColor="white"
+            >
+              Sign in
+            </Button>
+            <Checkbox.Item
+              mode={Platform.select({ ios: "ios", android: "android" })}
+              label="Keep me signed in"
+              status={checked}
+              onPress={(e) => {
+                setChecked((prev) => {
+                  const next = prev === "unchecked" ? "checked" : "unchecked";
+                  (async () => {
+                    try {
+                      await AsyncStorage.setItem("my-key", next);
+                    } catch (e) {
+                      console.log(e);
+                    }
+                  })();
+                  return next;
+                });
+              }}
+              uncheckedColor="#0F0017"
+              color="#0F0017"
+            />
+          </View>
+        </View>
       </SafeAreaView>
-    </ScrollView>
+    </View>
   );
 };
 
