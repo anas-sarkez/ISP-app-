@@ -3,7 +3,7 @@ import React from "react";
 
 const setting = () => {
   return (
-    <View>
+    <View className="bg-white">
       <Text>setting</Text>
     </View>
   );

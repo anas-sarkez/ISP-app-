@@ -8,15 +8,14 @@ import {
   StatusBar,
   Appearance,
 } from "react-native";
-import React, { createRef, useRef, useState } from "react";
+import React, { createRef, useEffect, useRef, useState } from "react";
 import { Link, useRouter } from "expo-router";
 import { Checkbox, TextInput, Button } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = () => {
-  const [checked, setChecked] = useState<
-    "unchecked" | "checked" | "indeterminate"
-  >("unchecked");
+  const [checked, setChecked] = useState<string>("unchecked");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const passwordTextInput = useRef<any>();
@@ -32,6 +31,24 @@ const Login = () => {
       router.replace("/dashboard");
   };
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const value = await AsyncStorage.getItem("my-key");
+        if (value !== null) {
+          if (value === "checked") {
+            await AsyncStorage.setItem("my-key", "unchecked");
+            router.replace("/dashboard");
+          }
+
+          setChecked(value);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  }, []);
+
   return (
     <View className="bg-white h-[98%]">
       <StatusBar barStyle={"dark-content"}></StatusBar>
@@ -39,14 +56,12 @@ const Login = () => {
         mode="margin"
         className="h-screen bg-white justify-self-end self-end bottom-0 w-full flex justify-around items-center"
       >
-        <View className="w-full h-[90%] flex-col justify-center items-center">
-          <View className="w-[80%] -mt-6 h-[30%] justify-center items-center">
-            <Image
-              source={require("../../assets/images/home_logo.png")}
-              className=" h-[100%] w-[100%] "
-            />
-          </View>
-          <View className="w-full  h-[70%] -mt-24 justify-center items-center ">
+        <View className="w-full h-[90%] flex-col justify-start items-center">
+          <Image
+            source={require("../../assets/images/home_logo.png")}
+            className=" w-[80%] h-[32%]"
+          />
+          <View className="w-full  h-[70%] -mt-[22%] justify-center items-center ">
             <TextInput
               mode="outlined"
               label="Username"
@@ -95,11 +110,19 @@ const Login = () => {
               mode={Platform.select({ ios: "ios", android: "android" })}
               label="Keep me signed in"
               status={checked}
-              onPress={(e) =>
-                setChecked((prev) =>
-                  prev === "unchecked" ? "checked" : "unchecked"
-                )
-              }
+              onPress={(e) => {
+                setChecked((prev) => {
+                  const next = prev === "unchecked" ? "checked" : "unchecked";
+                  (async () => {
+                    try {
+                      await AsyncStorage.setItem("my-key", next);
+                    } catch (e) {
+                      console.log(e);
+                    }
+                  })();
+                  return next;
+                });
+              }}
               uncheckedColor="#0F0017"
               color="#0F0017"
             />

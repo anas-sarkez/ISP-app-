@@ -29,10 +29,10 @@ const Dashboard = () => {
           </View>
         </View>
 
-        <View className="w-full justify-center items-center -mt-6 h-[35%]">
+        <View className="w-full justify-center items-center -mt-6 h-[35%] ">
           <View
             style={stylesType.box}
-            className="border-2 py-4 w-[80%] bg-[#fff] border-[#a14040] rounded-3xl items-center mt-8 "
+            className="border-2 py-4 w-[80%] bg-[#fff] border-[#a14040] overflow-hidden rounded-3xl items-center mt-8 "
           >
             <AnimatedCircularProgress
               size={200}
@@ -140,21 +140,13 @@ export default Dashboard;
 
 const styles = StyleSheet.create({
   box: {
-    ...Platform.select({
-      ios: {
-        shadowColor: "rgba(0, 0, 0, 1)",
-        shadowOpacity: 0.5,
-        shadowRadius: 2,
-        shadowOffset: {
-          height: 1,
-          width: 1,
-        },
-      },
-      android: {
-        elevation: 1,
-        backgroundColor: "rgba(0, 0, 0, 1)",
-      },
-    }),
+    shadowColor: "rgba(0, 0, 0, 1)",
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    shadowOffset: {
+      height: 1,
+      width: 1,
+    },
   },
 });
 const stylesType: StyleSheet.NamedStyles<any> = styles;
