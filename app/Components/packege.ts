@@ -17,7 +17,7 @@ export const packege = () => [
   },
   {
     name: "Package 3",
-    quota: "100 GB",
+    quota: "Unlimited",
     price: "10.000 LYD",
     duration: "1 month",
     speedupLoading: "6 MB",

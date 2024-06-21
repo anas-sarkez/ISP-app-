@@ -63,8 +63,9 @@ export default function Modal() {
                 <List.Icon {...props} icon="package-variant" color="#973131" />
               )}
             >
-              {packege().map((item) => (
+              {packege().map((item, index) => (
                 <List.Accordion
+                  key={index}
                   title={item.name}
                   style={{ backgroundColor: "#f0f0f0" }}
                   left={(props) => (
