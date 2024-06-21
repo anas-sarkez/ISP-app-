@@ -8,10 +8,11 @@ import {
   StatusBar,
   Appearance,
 } from "react-native";
-import React, { createRef, useRef, useState } from "react";
+import React, { createRef, useEffect, useRef, useState } from "react";
 import { Link, useRouter } from "expo-router";
 import { Checkbox, TextInput, Button } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = () => {
   const [checked, setChecked] = useState<
@@ -31,6 +32,24 @@ const Login = () => {
     if (username === myUsername && myPassword === password)
       router.replace("/dashboard");
   };
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const value = await AsyncStorage.getItem("my-key");
+        if (value !== null) {
+          if (value === "checked") {
+            await AsyncStorage.setItem("my-key", "unchecked");
+            router.replace("/dashboard");
+          }
+
+          setChecked(value);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  }, []);
 
   return (
     <ScrollView className="bg-white">
@@ -90,11 +109,19 @@ const Login = () => {
           mode={Platform.select({ ios: "ios", android: "android" })}
           label="Keep me signed in"
           status={checked}
-          onPress={(e) =>
-            setChecked((prev) =>
-              prev === "unchecked" ? "checked" : "unchecked"
-            )
-          }
+          onPress={(e) => {
+            setChecked((prev) => {
+              const next = prev === "unchecked" ? "checked" : "unchecked";
+              (async () => {
+                try {
+                  await AsyncStorage.setItem("my-key", next);
+                } catch (e) {
+                  console.log(e);
+                }
+              })();
+              return next;
+            });
+          }}
           uncheckedColor="#0F0017"
           color="#0F0017"
         />

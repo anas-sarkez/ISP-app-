@@ -4,13 +4,13 @@
     "slug": "Sela",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/images/people.pngs",
+    "icon": "./assets/images/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "ios": {
       "supportsTablet": true
