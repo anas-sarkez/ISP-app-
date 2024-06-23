@@ -8,13 +8,23 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 export default function RootLayout() {
   return (
     <SafeAreaProvider>
-      <Stack>
+      <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen
           name="modal"
           options={{
             presentation: "modal",
+            headerStyle: {
+              backgroundColor: "#fff",
+            },
+            headerTitle: "Data plan",
+            headerTitleStyle: {
+              color: "#C0091E",
+              fontWeight: "bold",
+
+              fontSize: 20,
+            },
           }}
         />
       </Stack>
