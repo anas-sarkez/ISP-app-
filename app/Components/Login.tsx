@@ -6,7 +6,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = () => {
-  const [checked, setChecked] = useState<string>("unchecked");
+  const [checked, setChecked] = useState<
+    "unchecked" | "checked" | "indeterminate"
+  >("unchecked");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const passwordTextInput = useRef<any>();
@@ -34,12 +36,19 @@ const Login = () => {
     (async () => {
       try {
         const value = await AsyncStorage.getItem("my-key");
+        const state: "unchecked" | "checked" | "indeterminate" =
+          value === "checked" ||
+          value === "unchecked" ||
+          value === "indeterminate"
+            ? value
+            : "unchecked";
         if (value !== null) {
           if (value === "checked") {
             await AsyncStorage.setItem("my-key", "unchecked");
             router.replace("/dashboard");
           }
-          setChecked(value);
+
+          setChecked(state);
         }
       } catch (e) {
         console.log(e);
