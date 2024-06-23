@@ -1,137 +1,88 @@
 import { useRouter } from "expo-router";
 import React from "react";
-import { Platform, View, Text, StyleSheet, ScrollView } from "react-native";
+import {
+  Platform,
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ImageBackground,
+  StatusBar,
+} from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { Avatar, Button, Icon } from "react-native-paper";
-
+import { Easing } from "react-native-reanimated";
 const Dashboard = () => {
+  const statusbar = () => StatusBar.setBarStyle("light-content", true);
   const router = useRouter();
   return (
-    <View className=" w-full h-[100%] bg-[#ffffff] ">
-      <View className="m-3 py-5  h-[95%] border-[2px] border-[#a14040] rounded-3xl bg-[#f5f5f5d2]">
-        <View className="pl-4 pt-2 flex-row w-full ">
-          <Avatar.Image
-            size={45}
-            source={require("../../assets/images/people.png")}
-          />
-          <Text className=" text-2xl font-black py-1  pl-[10%] text-[#a14040]  ">
-            Account Username
-          </Text>
-        </View>
-        <View className=" items-center mt-6 ">
-          <View className="flex-row  w-[80%] mt-2 items-center justify-between">
-            <Text className="text-[16px] font-medium text-[#a14040]">
-              <Text className="font-black text-[16px] ">Name:</Text> Anas Sarkiz
-            </Text>
-            <Text className="text-[16px] font-medium text-[#a14040]">
-              <Text className="font-black text-[16px]">States:</Text> Active
+    <View className=" w-full h-[100%]">
+      <StatusBar barStyle="light-content" />
+      <ImageBackground
+        imageStyle={{ opacity: 1 }}
+        className="w-screen bg-center   h-[105%]"
+        source={require("../../assets/images/dashboard1.png")}
+        resizeMode="cover"
+      >
+        <View className="m-[2%] z-50 mt-[20%]  h-[90%]  justify-evenly items-center ">
+          <View className=" w-[90%]  flex-row  justify-evenly items-center ">
+            <Icon source="card-account-details" size={45} color="#fff" />
+            <Text
+              style={styles.box}
+              className=" text-2xl font-semibold  py-1 text-white  "
+            >
+              Account Username
             </Text>
           </View>
-        </View>
 
-        <View className="w-full justify-center items-center -mt-6 h-[35%] ">
-          <View
-            style={stylesType.box}
-            className="border-2 py-4 w-[80%] bg-[#fff] border-[#a14040] overflow-hidden rounded-3xl items-center mt-8 "
-          >
-            <AnimatedCircularProgress
-              size={200}
-              width={15}
-              fill={63}
-              tintColor="#973131"
-              backgroundColor="#5e5151"
-              rotation={-100}
-              lineCap="round"
-              delay={500}
-              style={stylesType.box}
-              duration={500}
-              arcSweepAngle={200}
-            ></AnimatedCircularProgress>
-            <Text className="-mt-24 text-[22px] font-black text-[#a14040]">
-              2.014 GB
+          <View className=" justify-center items-center">
+            <View
+              style={styles.box}
+              className="bg-[#fff] w-[250px] mt-5 py-4 h-[250px] rounded-full justify-center items-center  "
+            >
+              <AnimatedCircularProgress
+                size={230}
+                width={18}
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginTop: "-33%",
+                }}
+                fill={50}
+                tintColor="#C0091E"
+                rotation={-180}
+                dashedBackground={{ gap: 0, width: 0 }}
+                dashedTint={{ gap: 2, width: 2 }}
+                backgroundColor="#fff"
+                lineCap="butt"
+                duration={2700}
+                easing={Easing.inOut(Easing.ease)}
+              ></AnimatedCircularProgress>
+              <Text className="-mt-[56%] text-[20px] font-bold text-[#0c0b0b]">
+                2.01 GB/15 GB
+              </Text>
+
+              <Text className="text-[16px] mt-2 font-bold text-[#0f0d0d]">
+                5 Days
+              </Text>
+            </View>
+          </View>
+          <View className="w-full justify-center items-center ">
+            <Text className="text-[20px] font-medium text-[#331919]">
+              Balance: <Text className="font-semibold ">10.000 LYD</Text>
             </Text>
           </View>
-        </View>
-        <View className="w-full justify-center items-center mt-3">
-          <Text className="text-[16px] font-medium text-[#a14040]">
-            Balance: <Text className="font-black ">10.000 LYD</Text>
-          </Text>
-        </View>
-        <View className="w-full justify-center items-center">
-          <View className=" h-[210px] w-[95%]  justify-center mt-4 flex-row">
-            <View className="w-[50%] h-[100%]">
-              <View
-                style={stylesType.box}
-                className="font-bold border-2 shadow-2xl text-center  rounded-2xl border-[#a14040] bg-[#fff] h-[50%]  m-[6]"
-              >
-                <Text className="text-[16px] mt-5 text-center font-bold text-[#a14040] ">
-                  Consumed{"  "}
-                  <Icon size={20} source="chart-line" color="#973131"></Icon>
-                </Text>
-                <Text className="text-[14px]   mt-2 text-center  text-[#a14040]">
-                  12.014 GB
-                </Text>
-              </View>
-              <View
-                style={stylesType.box}
-                className="font-bold  border-2 shadow-2xl text-center  rounded-2xl border-[#a14040] bg-[#fff] h-[50%]  m-[6]"
-              >
-                <Text className="text-[16px] mt-5 text-center font-bold text-[#a14040] ">
-                  Remaining{"   "}
-                  <Icon size={20} source="chart-donut" color="#973131"></Icon>
-                </Text>
-                <Text className="text-[14px] text-center mt-2 text-[#a14040]">
-                  2.014 GB
-                </Text>
-              </View>
-            </View>
-            <View className="w-[50%] h-full ">
-              <View
-                style={stylesType.box}
-                className="font-bold border-2 shadow-2xl   rounded-2xl border-[#a14040] bg-[#ffffff] h-[50%]  m-[6]"
-              >
-                <Text className="text-[16px] mt-5 text-center font-bold text-[#a14040] ">
-                  Expiration Date{"  "}
-                  <Icon
-                    size={20}
-                    source="calendar-month"
-                    color="#973131"
-                  ></Icon>
-                </Text>
-                <Text className="text-[14px] text-center    mt-2 text-[#a14040]">
-                  20/06/2024
-                </Text>
-              </View>
-              <View
-                style={stylesType.box}
-                className="font-bold border-2 shadow-2xl   rounded-2xl border-[#a14040] bg-[#ffffff] h-[50%]  m-[6]"
-              >
-                <Text className="text-[16px] mt-5 text-center font-bold text-[#a14040]">
-                  Package Name{" "}
-                  <Icon
-                    size={20}
-                    source="package-variant"
-                    color="#973131"
-                  ></Icon>
-                </Text>
-                <Text className="text-[14px]   mt-2 text-center  text-[#a14040]">
-                  Package 1
-                </Text>
-              </View>
-            </View>
+          <View className="flex-row  w-[80%] mt-2 items-center justify-between">
+            <Text className="text-[16px] font-bold text-[#1D1D2E]">
+              <Text className="font-black text-[18px] ">Name:</Text> Anas Sarkiz
+            </Text>
+            <Text className="text-[16px] font-bold text-[#1D1D2E]">
+              <Text className="font-black text-[18px] ">Status:</Text> Active
+            </Text>
           </View>
+          <View className="items-center w-[80%] mb-7 mt-12"></View>
         </View>
-        <View className="items-center mb-7 mt-12">
-          <Button
-            icon="credit-card"
-            mode="contained"
-            className="bg-[#973131] text-white w-[60%] rounded-3xl"
-            onPress={() => router.push("/modal")}
-          >
-            Data Plan
-          </Button>
-        </View>
-      </View>
+      </ImageBackground>
     </View>
   );
 };
@@ -141,11 +92,11 @@ export default Dashboard;
 const styles = StyleSheet.create({
   box: {
     shadowColor: "rgba(0, 0, 0, 1)",
-    shadowOpacity: 0.5,
-    shadowRadius: 2,
+    shadowOpacity: 0.7,
+    shadowRadius: 1.3,
     shadowOffset: {
-      height: 1,
-      width: 1,
+      height: 1.5,
+      width: 1.5,
     },
   },
 });

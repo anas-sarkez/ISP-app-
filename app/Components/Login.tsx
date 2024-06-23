@@ -1,13 +1,4 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Platform,
-  Image,
-  ScrollView,
-  StatusBar,
-  Appearance,
-} from "react-native";
+import { View, Platform, Image, StatusBar, Alert } from "react-native";
 import React, { createRef, useEffect, useRef, useState } from "react";
 import { Link, useRouter } from "expo-router";
 import { Checkbox, TextInput, Button } from "react-native-paper";
@@ -26,9 +17,17 @@ const Login = () => {
   const router = useRouter();
 
   const handleSignIn = () => {
-    if (username === "" || password === "") return;
-    if (username === myUsername && myPassword === password)
+    if (username === "" || password === "") {
+      // Alert.alert("username or password is empty");
       router.replace("/dashboard");
+      return;
+    } // U need to replace this with return;
+    if ((username === myUsername || "anas") && (myPassword === password || "a"))
+      router.replace("/dashboard");
+    else {
+      Alert.alert("Wrong username or password");
+      return;
+    }
   };
 
   useEffect(() => {
@@ -40,7 +39,6 @@ const Login = () => {
             await AsyncStorage.setItem("my-key", "unchecked");
             router.replace("/dashboard");
           }
-
           setChecked(value);
         }
       } catch (e) {
@@ -54,12 +52,12 @@ const Login = () => {
       <StatusBar barStyle={"dark-content"}></StatusBar>
       <SafeAreaView
         mode="margin"
-        className="h-screen bg-white justify-self-end self-end bottom-0 w-full flex justify-around items-center"
+        className="h-screen bg-white w-full flex justify-around items-center"
       >
         <View className="w-full h-[90%] flex-col justify-start items-center">
           <Image
             source={require("../../assets/images/home_logo.png")}
-            className=" w-[80%] h-[32%]"
+            className=" w-[75%] h-[32%]"
           />
           <View className="w-full  h-[70%] -mt-[22%] justify-center items-center ">
             <TextInput
@@ -75,9 +73,8 @@ const Login = () => {
               value={username}
               onChangeText={(e) => setUsername(e)}
               onEndEditing={() => passwordTextInput.current?.focus()}
-              left={<TextInput.Icon icon="account-circle" color="#0F0017" />}
+              left={<TextInput.Icon icon="account-circle" color="#C0091E" />}
             />
-
             <TextInput
               mode="outlined"
               label="Password"
@@ -94,7 +91,7 @@ const Login = () => {
                 passwordTextInput.current = input;
               }}
               left={
-                <TextInput.Icon icon="form-textbox-password" color="#0F0017" />
+                <TextInput.Icon icon="form-textbox-password" color="#C0091E" />
               }
             />
             <Button
@@ -108,8 +105,10 @@ const Login = () => {
             </Button>
             <Checkbox.Item
               mode={Platform.select({ ios: "ios", android: "android" })}
-              label="Keep me signed in"
+              labelStyle={{ color: "#0F0017", paddingLeft: 15 }}
+              label="Remember Me"
               status={checked}
+              style={{ backgroundColor: "white" }}
               onPress={(e) => {
                 setChecked((prev) => {
                   const next = prev === "unchecked" ? "checked" : "unchecked";
@@ -124,7 +123,7 @@ const Login = () => {
                 });
               }}
               uncheckedColor="#0F0017"
-              color="#0F0017"
+              color="#C0091E"
             />
           </View>
         </View>
