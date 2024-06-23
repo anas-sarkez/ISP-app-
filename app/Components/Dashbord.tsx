@@ -7,7 +7,7 @@ import { Avatar, Button, Icon } from "react-native-paper";
 const Dashboard = () => {
   const router = useRouter();
   return (
-    <View className=" w-full h-[100%] bg-[#ffffff] ">
+    <ScrollView className=" w-full h-[100%] bg-[#ffffff] ">
       <View className="m-3 py-5  h-[95%] border-[2px] border-[#a14040] rounded-3xl bg-[#f5f5f5d2]">
         <View className="pl-4 pt-2 flex-row w-full ">
           <Avatar.Image
@@ -132,7 +132,7 @@ const Dashboard = () => {
           </Button>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
