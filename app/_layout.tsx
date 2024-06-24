@@ -15,6 +15,8 @@ export default function RootLayout() {
           name="modal"
           options={{
             presentation: "modal",
+            animation: "fade_from_bottom",
+            gestureEnabled: true,
             headerStyle: {
               backgroundColor: "#fff",
             },
@@ -22,7 +24,6 @@ export default function RootLayout() {
             headerTitleStyle: {
               color: "#C0091E",
               fontWeight: "bold",
-
               fontSize: 20,
             },
           }}
