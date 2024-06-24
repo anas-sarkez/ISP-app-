@@ -15,7 +15,7 @@ export default function Modal() {
 
   return (
     <ScrollView className="w-full bg-[#fff] ">
-      <View className="items-center mt-[12%] mb-9 justify-center">
+      <View className="items-center  mb-9 justify-center">
         <View className="w-[95%] border-b-2 items-start justify-center flex-row  bg-[#ffffff] border-[#1D1D2E]">
           <Text className="text-[20px] py-[3%] text-center  font-bold text-[#1D1D2E]">
             Please Enter Your Card Number

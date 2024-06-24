@@ -1,5 +1,5 @@
 import { SplashScreen, Stack } from "expo-router";
-import { Appearance } from "react-native";
+import { Appearance, Platform } from "react-native";
 import { StatusBar } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
@@ -8,17 +8,21 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 export default function RootLayout() {
   return (
     <SafeAreaProvider>
-      <Stack screenOptions={{ headerShown: false }}>
+      <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen
           name="modal"
           options={{
-            presentation: "modal",
+            presentation: Platform.OS === "ios" ? "modal" : "card",
             headerStyle: {
               backgroundColor: "#fff",
             },
-            headerTitle: "Data plan",
+            animation: Platform.OS === "ios" ? "flip" : "slide_from_right",
+
+            headerBackTitle: Platform.OS === "ios" ? "" : "Cancel",
+            headerTitle: Platform.OS === "ios" ? "" : "Data plan",
+
             headerTitleStyle: {
               color: "#C0091E",
               fontWeight: "bold",

@@ -31,7 +31,7 @@ const Dashboard = () => {
               style={styles.box}
               className=" text-2xl font-semibold  py-1 text-white  "
             >
-              Account Username
+              Anas02
             </Text>
           </View>
 
