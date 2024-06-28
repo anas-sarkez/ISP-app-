@@ -3,11 +3,12 @@ import { View, Text, Alert, StyleSheet, ScrollView } from "react-native";
 import { List, TextInput, Button, Icon } from "react-native-paper";
 import { packege } from "./Components/packege";
 import { confirm } from "./Components/confirm";
+import * as Notifications from "expo-notifications";
 export default function Modal() {
   const [text, setText] = useState("");
-  const [expanded, setExpanded] = useState(true);
+  // const [expanded, setExpanded] = useState(true);
   const [selectedPackage, setSelectedPackage] = useState(packege.limited[1]);
-  const handlePress = () => setExpanded(!expanded);
+  // const handlePress = () => setExpanded(!expanded);
   const [checkCard, setCheckCard] = useState(true);
   const [balance, setBalance] = useState(0);
   const [cardNo, setCardNo] = useState("");
@@ -72,7 +73,16 @@ export default function Modal() {
                 "Do you want to proceed?"
               );
 
-              if (cardNo == "12345678") {
+              if (cardNo == "12345678" && shouldContinue) {
+                await Notifications.scheduleNotificationAsync({
+                  content: {
+                    title: "Success ✅",
+                    body: "10 LYD Added",
+                    data: { data: "goes here", test: { test1: "more data" } },
+                  },
+                  trigger: { seconds: 2 },
+                });
+                Notifications.setNotificationChannelGroupAsync;
                 setBalance((prev) => prev + 10);
                 const massage =
                   "10 LYD Added" + "\n" + "Balance: " + balance + " LYD 💸"; //adding 10 LYD to balance not worked
@@ -128,10 +138,15 @@ export default function Modal() {
                     );
                     if (shouldContinue) {
                       setValid(true);
+                      setBalance(balance - selectedPackage.price);
+
                       Alert.alert(
                         "Success ✅",
                         " \n Package renewed successfully"
                       );
+                    }
+                    if (!shouldContinue) {
+                      return;
                     }
                   }
                 }
@@ -377,3 +392,13 @@ const styles = StyleSheet.create({
   },
 });
 const stylesType: StyleSheet.NamedStyles<any> = styles;
+async function schedulePushNotification() {
+  await Notifications.scheduleNotificationAsync({
+    content: {
+      title: "You've got mail! 📬",
+      body: "Here is the notification body",
+      data: { data: "goes here", test: { test1: "more data" } },
+    },
+    trigger: { seconds: 2 },
+  });
+}

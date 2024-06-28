@@ -4,6 +4,7 @@ import { Link, useRouter } from "expo-router";
 import { Checkbox, TextInput, Button } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as localAuthentication from "expo-local-authentication";
 
 const Login = () => {
   const [checked, setChecked] = useState<
@@ -12,6 +13,8 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const passwordTextInput = useRef<any>();
+  const [isBiometricSupported, setIsBiometricSupported] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const myUsername = "shibo";
   const myPassword = "s";
@@ -20,8 +23,8 @@ const Login = () => {
 
   const handleSignIn = () => {
     if (username === "" || password === "") {
-      // Alert.alert("username or password is empty");
-      router.replace("/dashboard");
+      Alert.alert("username or password is empty");
+      // router.replace("/dashboard");
       return;
     } // U need to replace this with return;
     if ((username === myUsername || "anas") && (myPassword === password || "a"))
@@ -29,6 +32,29 @@ const Login = () => {
     else {
       Alert.alert("Wrong username or password");
       return;
+    }
+  };
+  useEffect(() => {
+    (async () => {
+      const compatible = await localAuthentication.hasHardwareAsync();
+      setIsBiometricSupported(compatible);
+    })();
+  }, []);
+  const authenticateUser = async () => {
+    try {
+      const authenticationResult = await localAuthentication.authenticateAsync({
+        promptMessage: "Log in to Sela",
+      });
+
+      if (authenticationResult.success) {
+        setIsAuthenticated(true);
+        await AsyncStorage.setItem("authenticationStatus", "authenticated");
+        router.replace("/dashboard");
+      }
+
+      console.log(authenticationResult);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -45,7 +71,6 @@ const Login = () => {
         if (value !== null) {
           if (value === "checked") {
             await AsyncStorage.setItem("my-key", "unchecked");
-            router.replace("/dashboard");
           }
 
           setChecked(state);
@@ -55,7 +80,9 @@ const Login = () => {
       }
     })();
   }, []);
-
+  useEffect(() => {
+    if (isBiometricSupported) authenticateUser();
+  }, [isBiometricSupported]);
   return (
     <View className="bg-white h-[98%]">
       <StatusBar barStyle={"dark-content"}></StatusBar>
@@ -82,7 +109,7 @@ const Login = () => {
               value={username}
               onChangeText={(e) => setUsername(e)}
               onEndEditing={() => passwordTextInput.current?.focus()}
-              left={<TextInput.Icon icon="account-circle" color="#C0091E" />}
+              // left={<TextInput.Icon icon="account-circle" color="#C0091E" />}
             />
             <TextInput
               mode="outlined"
@@ -99,9 +126,6 @@ const Login = () => {
               ref={(input: any) => {
                 passwordTextInput.current = input;
               }}
-              left={
-                <TextInput.Icon icon="form-textbox-password" color="#C0091E" />
-              }
             />
             <Button
               onPress={handleSignIn}
@@ -118,19 +142,19 @@ const Login = () => {
               label="Remember Me"
               status={checked}
               style={{ backgroundColor: "white" }}
-              onPress={(e) => {
-                setChecked((prev) => {
-                  const next = prev === "unchecked" ? "checked" : "unchecked";
-                  (async () => {
-                    try {
-                      await AsyncStorage.setItem("my-key", next);
-                    } catch (e) {
-                      console.log(e);
-                    }
-                  })();
-                  return next;
-                });
-              }}
+              // onPress={(e) => {
+              //   setChecked((prev) => {
+              //     const next = prev === "unchecked" ? "checked" : "unchecked";
+              //     (async () => {
+              //       try {
+              //         await AsyncStorage.setItem("my-key", next);
+              //       } catch (e) {
+              //         console.log(e);
+              //       }
+              //     })();
+              //     return next;
+              //   });
+              // }}
               uncheckedColor="#0F0017"
               color="#C0091E"
             />
