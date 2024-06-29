@@ -8,7 +8,7 @@ const Plane = () => {
     <ImageBackground
       imageStyle={{ resizeMode: "cover" }}
       className="w-screen bg-center items-center  h-[104%]"
-      source={require("../../assets/images/databg.png")}
+      source={require("../../../assets/images/databg.png")}
     >
       <View className="w-[90%] h-[80%] mt-[23%] bg-transparent justify-center items-center">
         <View

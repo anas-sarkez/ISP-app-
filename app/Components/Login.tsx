@@ -1,12 +1,13 @@
 import { View, Platform, Image, StatusBar, Alert } from "react-native";
 import React, { createRef, useEffect, useRef, useState } from "react";
-import { Link, useRouter } from "expo-router";
+import { Link, Redirect, useRouter } from "expo-router";
 import { Checkbox, TextInput, Button } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as localAuthentication from "expo-local-authentication";
 
 const Login = () => {
+  return Redirect({ href: "/dashboard" });
   const [checked, setChecked] = useState<
     "unchecked" | "checked" | "indeterminate"
   >("unchecked");
