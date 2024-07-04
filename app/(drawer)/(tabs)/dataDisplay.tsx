@@ -3,17 +3,17 @@ import React from "react";
 import { Button, Icon } from "react-native-paper";
 import { router } from "expo-router";
 
-const plan = () => {
+const Plane = () => {
   return (
     <ImageBackground
       imageStyle={{ resizeMode: "cover" }}
       className="w-screen bg-center items-center  h-[104%]"
-      source={require("../../assets/images/databg.png")}
+      source={require("../../../assets/images/databg.png")}
     >
       <View className="w-[90%] h-[80%] mt-[23%] bg-transparent justify-center items-center">
         <View
           style={stylesType.box}
-          className="font-bold border-2 h-[15%] shadow-2xl text-center w-[80%] items-center rounded-2xl border-[#C4C4C4] bg-[#fff]  m-[8]"
+          className="font-bold border-2 h-[15%] shadow-2xl text-center w-[90%] items-center rounded-2xl border-[#C4C4C4] bg-[#fff]  m-[8]"
         >
           <Text className="text-[20px] mt-5 text-center font-bold text-[#331919] ">
             Consumed{"  "}
@@ -25,7 +25,7 @@ const plan = () => {
         </View>
         <View
           style={stylesType.box}
-          className="font-bold  border-2 h-[15%] shadow-2xl text-center w-[80%] rounded-2xl border-[#C4C4C4] bg-[#fff]  m-[8]"
+          className="font-bold  border-2 h-[15%] shadow-2xl text-center w-[90%] rounded-2xl border-[#C4C4C4] bg-[#fff]  m-[8]"
         >
           <Text className="text-[20px] mt-5 text-center font-bold text-[#331919] ">
             Remaining{"  "}
@@ -37,7 +37,7 @@ const plan = () => {
         </View>
         <View
           style={stylesType.box}
-          className="font-bold border-2 shadow-2xl h-[15%]  rounded-2xl border-[#C4C4C4] bg-[#ffffff] w-[80%]  m-[8]"
+          className="font-bold border-2 shadow-2xl h-[15%]  rounded-2xl border-[#C4C4C4] bg-[#ffffff] w-[90%]  m-[8]"
         >
           <Text className="text-[20px] mt-5 text-center font-bold text-[#331919] ">
             Expiration Date{"  "}
@@ -49,7 +49,7 @@ const plan = () => {
         </View>
         <View
           style={stylesType.box}
-          className="font-bold border-2 shadow-2xl h-[15%]  rounded-2xl border-[#C4C4C4] bg-[#ffffff] w-[80%]  m-[8]"
+          className="font-bold border-2 shadow-2xl h-[15%]  rounded-2xl border-[#C4C4C4] bg-[#ffffff] w-[90%]  m-[8]"
         >
           <Text className="text-[20px] mt-5 text-center font-bold text-[#331919]">
             Package Name{"  "}
@@ -61,19 +61,20 @@ const plan = () => {
         </View>
         <Button
           style={stylesType.box}
+          labelStyle={{ color: "white" }}
           icon="database-cog-outline"
           mode="contained"
           className="bg-[#7c1e1e] text-white mt-[10%] w-[60%] rounded-3xl"
           onPress={() => router.push("/modal")}
         >
-          Data Plan
+          Data Plane
         </Button>
       </View>
     </ImageBackground>
   );
 };
 
-export default plan;
+export default Plane;
 const styles = StyleSheet.create({
   box: {
     shadowColor: "rgba(0, 0, 0, 1)",

@@ -1,5 +1,6 @@
 import { useRouter } from "expo-router";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDrawerProgress } from "@react-navigation/drawer";
 import {
   Platform,
   View,
@@ -13,14 +14,16 @@ import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { Avatar, Button, Icon } from "react-native-paper";
 import { Easing } from "react-native-reanimated";
 const Dashboard = () => {
+  const progress = useDrawerProgress();
   const statusbar = () => StatusBar.setBarStyle("light-content", true);
   const router = useRouter();
+
   return (
     <View className=" w-full h-[100%]">
       <StatusBar barStyle="light-content" />
       <ImageBackground
         imageStyle={{ opacity: 1 }}
-        className="w-screen bg-center   h-[105%]"
+        className="w-screen bg-center  overflow-hidden   h-[105%]"
         source={require("../../assets/images/dashboard1.png")}
         resizeMode="cover"
       >
@@ -35,9 +38,9 @@ const Dashboard = () => {
             </Text>
           </View>
 
-          <View className=" justify-center items-center">
+          <View className=" justify-center items-center ">
             <View
-              style={styles.box}
+              style={(styles.box, [{ elevation: 30 }])}
               className="bg-[#fff] w-[250px] mt-5 py-4 h-[250px] rounded-full justify-center items-center  "
             >
               <AnimatedCircularProgress
@@ -67,10 +70,12 @@ const Dashboard = () => {
               </Text>
             </View>
           </View>
-          <View className="w-full justify-center items-center ">
-            <Text className="text-[20px] font-medium text-[#331919]">
-              Balance: <Text className="font-semibold ">10.000 LYD</Text>
+          <View className="w-full flex-row justify-center items-center ">
+            <Text className="text-[24px] mr-2 font-bold text-[#331919]">
+              Balance:{" "}
+              <Text className="text-[22px] font-semibold ">10.000 LYD </Text>
             </Text>
+            <Icon source="account-cash" size={25} color="#7c1e1e" />
           </View>
           <View className="flex-row  w-[80%] mt-2 items-center justify-between">
             <Text className="text-[16px] font-bold text-[#1D1D2E]">
@@ -92,11 +97,11 @@ export default Dashboard;
 const styles = StyleSheet.create({
   box: {
     shadowColor: "rgba(0, 0, 0, 1)",
-    shadowOpacity: 0.7,
-    shadowRadius: 1.3,
+    shadowOpacity: 0.85,
+    shadowRadius: 5,
     shadowOffset: {
-      height: 1.5,
-      width: 1.5,
+      height: 3,
+      width: 2,
     },
   },
 });
