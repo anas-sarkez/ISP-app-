@@ -61,6 +61,7 @@ const Plane = () => {
         </View>
         <Button
           style={stylesType.box}
+          labelStyle={{ color: "white" }}
           icon="database-cog-outline"
           mode="contained"
           className="bg-[#7c1e1e] text-white mt-[10%] w-[60%] rounded-3xl"

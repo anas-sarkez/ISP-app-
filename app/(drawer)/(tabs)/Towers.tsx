@@ -41,7 +41,7 @@ export default function Towers() {
     getLocation();
   }, []);
   return (
-    <View className="h-full w-full bg-[#fff] items-center justify-center">
+    <View className="h-full w-full bg-[#EDEDED] items-center justify-center">
       <View className="h-[10%] w-full items-center justify-center">
         <Text className="text-[24px] mt-10 font-bold text-[#7c1e1e]">
           {!towers ? "Towers" : "Offices"}
@@ -174,6 +174,7 @@ export default function Towers() {
         </Button> */}
         <Button
           mode="contained"
+          labelStyle={{ color: "white" }}
           className="bg-[#7c1e1e] text-white mt-[10%] w-[35%] rounded-3xl"
           onPress={() => {
             setTowers((prev) => !prev);
@@ -195,6 +196,7 @@ export default function Towers() {
           </Text>
           <Button
             mode="contained"
+            labelStyle={{ color: "white" }}
             className="bg-[#7c1e1e] text-white  w-[35%] rounded-3xl"
             onPress={async () => {
               if (pending == "failed") {

@@ -14,6 +14,7 @@ const _layout = () => {
           // header: (props) => <LogoTitle {...props} />,
           tabBarActiveTintColor: "#C0091E",
           tabBarInactiveTintColor: "#C4C4C4",
+
           headerShown: false,
         }}
       >
@@ -38,20 +39,7 @@ const _layout = () => {
             },
           })}
         />
-        <Tabs.Screen
-          name="Towers"
-          options={{
-            tabBarIcon(props) {
-              return (
-                <Icon
-                  source="transmission-tower"
-                  size={30}
-                  color={`${props.focused ? "#C0091E" : "#C4C4C4"}`}
-                />
-              );
-            },
-          }}
-        />
+
         <Tabs.Screen
           name="dashboard"
           options={{
@@ -75,6 +63,20 @@ const _layout = () => {
               return (
                 <Icon
                   source="chart-bar"
+                  size={30}
+                  color={`${props.focused ? "#C0091E" : "#C4C4C4"}`}
+                />
+              );
+            },
+          }}
+        />
+        <Tabs.Screen
+          name="Towers"
+          options={{
+            tabBarIcon(props) {
+              return (
+                <Icon
+                  source="transmission-tower"
                   size={30}
                   color={`${props.focused ? "#C0091E" : "#C4C4C4"}`}
                 />

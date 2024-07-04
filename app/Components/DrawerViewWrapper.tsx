@@ -10,35 +10,26 @@ import { transform } from "@babel/core";
 const DrawerViewWrapper = ({ children }: { children: any }) => {
   const progress = useDrawerProgress();
   const animatedStyle = useAnimatedStyle(() => ({
-    style: {
-      shadowColor: "blue",
-      shadowOpacity: interpolate(progress.value, [0, 1], [0, 1]),
-      shadowRadius: interpolate(progress.value, [0, 1], [0, 5]),
-      shadowOffset: {
-        width: interpolate(progress.value, [0, 1], [0, -100]),
-        height: interpolate(progress.value, [0, 1], [0, -100]),
-      },
-    },
+    // style: {
+    //   shadowColor: "blue",
+    //   shadowOpacity: interpolate(progress.value, [0, 1], [0, 1]),
+    //   shadowRadius: interpolate(progress.value, [0, 1], [0, 5]),
+    //   shadowOffset: {
+    //     width: interpolate(progress.value, [0, 1], [0, -100]) * progress.value,
+    //     height: interpolate(progress.value, [0, 1], [0, -100]) * progress.value,
+    //   },
+    // },
+    height: interpolate(progress.value, [0, 1], [-20, 100]),
     transform: [
       {
-        scale: interpolate(progress.value, [0, 1], [1, 0.75]),
+        scale: interpolate(progress.value, [0, 1], [1, 0.6]),
       },
       {
         translateX: interpolate(progress.value, [0, 1], [0, -50]),
       },
     ] as unknown as {
-      rotate?: undefined;
-      rotateX?: undefined;
-      rotateY?: undefined;
-      rotateZ?: undefined;
       scale?: undefined;
-      scaleX?: undefined;
-      scaleY?: undefined;
-      translateX?: undefined;
       translateY?: undefined;
-      skewX?: undefined;
-      skewY?: undefined;
-      matrix?: undefined;
     } & {
       scale: number;
       translateX: number;

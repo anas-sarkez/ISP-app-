@@ -12,14 +12,16 @@ const _layout = () => {
         screenOptions={{
           sceneContainerStyle: { backgroundColor: "transparent" },
           headerShown: false,
-          drawerType: "back",
+          drawerType: "slide",
+          freezeOnBlur: true,
+
           drawerStyle: {
             width: "60%",
             padding: 0,
             paddingRight: 0,
             margin: 0,
             marginRight: 0,
-            backgroundColor: "#ffffff",
+            backgroundColor: "#ffefef",
           },
           drawerInactiveBackgroundColor: "transparent",
           drawerActiveBackgroundColor: "transparent",

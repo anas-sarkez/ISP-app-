@@ -7,7 +7,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as localAuthentication from "expo-local-authentication";
 
 const Login = () => {
-  return Redirect({ href: "/dashboard" });
+  // return Redirect({ href: "/dashboard" });
   const [checked, setChecked] = useState<
     "unchecked" | "checked" | "indeterminate"
   >("unchecked");

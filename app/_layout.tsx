@@ -9,7 +9,7 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <PaperProvider>
-        <Stack screenOptions={{ contentStyle: { backgroundColor: "#ffffff" } }}>
+        <Stack screenOptions={{ contentStyle: { backgroundColor: "#ffefef" } }}>
           <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
           <Stack.Screen
@@ -17,17 +17,15 @@ export default function RootLayout() {
             options={{
               // presentation: Platform.OS === "ios" ? "modal" : "card",
               headerStyle: {
-                backgroundColor: "#fff",
+                backgroundColor: "#f2f2f2",
               },
-              animation: "fade_from_bottom",
+              animation: "slide_from_right",
 
-              headerBackTitle: Platform.OS === "ios" ? "" : "Cancel",
-              headerTitle: Platform.OS === "ios" ? "" : "Data plan",
+              headerBackTitle: "Back",
 
               headerTitleStyle: {
                 color: "#C0091E",
                 fontWeight: "bold",
-
                 fontSize: 20,
               },
             }}

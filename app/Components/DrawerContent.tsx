@@ -5,6 +5,7 @@ import { Feather } from "@expo/vector-icons";
 import { Redirect, router } from "expo-router";
 import { Button } from "react-native-paper";
 import { Avatar } from "react-native-paper";
+import { AnimatedView } from "react-native-reanimated/lib/typescript/reanimated2/component/View";
 
 const DrawerContent = (props: any) => {
   return (
@@ -17,6 +18,7 @@ const DrawerContent = (props: any) => {
           {/* <Text className="pl-[8%] text-[#1D1D2E] text-xl font-medium mt-[4%]">
             SelaNet
           </Text> */}
+
           <Image
             source={require("../../assets/images/logo_landscape.png")}
             className="w-[85%] h-[100%] "
@@ -30,39 +32,42 @@ const DrawerContent = (props: any) => {
             style={{ backgroundColor: "#7c1e1e" }}
           />
           <Text className="pl-[10%] text-[#1D1D2E] text-xl font-medium">
-            ABSE
+            Anas
           </Text>
         </View>
-        <View className=" border-2 border-red-500 h-[55%] w-[100%]  mt-[8%] ">
+        <View className="  h-[45%] w-[100%]  mt-[8%] ">
           <DrawerItem
             style={{ padding: 0, width: "100%" }}
             icon={({ color, size }) => (
-              <Feather name="user" size={24} color={"#7c1e1e"} />
+              <Feather name="user" size={30} color={"#7c1e1e"} />
             )}
             label={"Profile"}
             onPress={() => {
               router.push("profile");
             }}
+            labelStyle={{ color: "#7c1e1e", fontWeight: "bold" }}
           />
           <DrawerItem
             style={{ padding: 0, width: "100%" }}
             icon={({ color, size }) => (
-              <Feather name="settings" size={24} color={"#7c1e1e"} />
+              <Feather name="settings" size={30} color={"#7c1e1e"} />
             )}
             label={"Settings"}
             onPress={() => {
               router.push("settings");
             }}
+            labelStyle={{ color: "#7c1e1e", fontWeight: "bold" }}
           />
           <DrawerItem
             style={{ padding: 0, width: "100%" }}
             icon={({ color, size }) => (
-              <Feather name="alert-circle" size={24} color={"#7c1e1e"} />
+              <Feather name="alert-circle" size={30} color={"#7c1e1e"} />
             )}
             label={"About the app"}
             onPress={() => {
               router.push("/(drawer)/(tabs)/Towers");
             }}
+            labelStyle={{ color: "#7c1e1e", fontWeight: "bold" }}
           />
         </View>
         <View className="w-full h-[15%] items-center ">
@@ -71,9 +76,11 @@ const DrawerContent = (props: any) => {
             icon="logout"
             mode="contained"
             className="bg-[#7c1e1e] text-white mt-[10%] w-[70%] rounded-3xl"
-            onPress={() => console.log("pressed")}
+            onPress={() => {
+              router.push("/");
+            }}
           >
-            Data Plane
+            Log out
           </Button>
         </View>
       </View>

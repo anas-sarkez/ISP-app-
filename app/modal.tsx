@@ -58,6 +58,7 @@ export default function Modal() {
           <Button
             style={stylesType.box}
             mode="contained"
+            labelStyle={{ color: "white" }}
             disabled={!checkCard}
             icon="currency-usd"
             className={` ${
@@ -114,6 +115,7 @@ export default function Modal() {
             </Text>
             <Button
               style={stylesType.box}
+              labelStyle={{ color: "white" }}
               mode="contained"
               icon="autorenew"
               className="bg-[#1D1D2E] text-white mt-4 w-[70%] rounded-xl"
@@ -224,6 +226,7 @@ export default function Modal() {
                       <View className="w-[100%] py-3 -ml-4 flex-row justify-around">
                         <Button
                           style={stylesType.box}
+                          labelStyle={{ color: "white" }}
                           mode="contained"
                           icon="cash-check"
                           className={`${
@@ -327,6 +330,7 @@ export default function Modal() {
                     <View className="w-[100%] py-3 -ml-4 flex-row justify-around">
                       <Button
                         style={stylesType.box}
+                        labelStyle={{ color: "white" }}
                         mode="contained"
                         icon="cash-check"
                         className={`${
