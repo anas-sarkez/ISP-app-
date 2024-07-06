@@ -1,3 +1,3 @@
-const DrawerButton = () => null;
+const menu = () => null;
 
-export default DrawerButton;
+export default menu;

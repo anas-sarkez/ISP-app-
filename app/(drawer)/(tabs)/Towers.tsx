@@ -4,7 +4,7 @@ import { Alert, Linking, Text, View } from "react-native";
 import { Button, Icon } from "react-native-paper";
 import * as Location from "expo-location";
 
-export default function Towers() {
+export default function towers() {
   const [towers, setTowers] = useState(true);
   const [Offices, setOffices] = useState(false);
   const [location, setLocation] = useState({});

@@ -4,6 +4,7 @@ import { Tabs } from "expo-router";
 import LogoTitle from "../../Components/LogoTitle";
 import { Icon } from "react-native-paper";
 import DrawerViewWrapper from "@/app/Components/DrawerViewWrapper";
+import AnimatedTabBar from "@/app/Components/AnimatedTabBar";
 
 const _layout = () => {
   return (
@@ -11,26 +12,19 @@ const _layout = () => {
       <Tabs
         sceneContainerStyle={{ backgroundColor: "transparent" }}
         screenOptions={{
-          // header: (props) => <LogoTitle {...props} />,
           tabBarActiveTintColor: "#C0091E",
           tabBarInactiveTintColor: "#C4C4C4",
 
           headerShown: false,
         }}
+        tabBar={(props) => <AnimatedTabBar {...props} />}
+        initialRouteName="dashboard"
+        backBehavior="initialRoute"
       >
         <Tabs.Screen
-          name="Menu"
+          name="menu"
           options={{
             headerShown: false,
-            tabBarIcon(props) {
-              return (
-                <Icon
-                  source="menu"
-                  size={30}
-                  // color={`${isDrawerOpen ? "#C0091E" : "#C4C4C4"}`}
-                />
-              );
-            },
           }}
           listeners={({ navigation }) => ({
             tabPress: (e) => {
@@ -40,50 +34,10 @@ const _layout = () => {
           })}
         />
 
-        <Tabs.Screen
-          name="dashboard"
-          options={{
-            tabBarIcon(props) {
-              return (
-                <Icon
-                  source="view-dashboard"
-                  size={30}
-                  color={`${props.focused ? "#C0091E" : "#C4C4C4"}`}
-                />
-              );
-            },
-          }}
-        />
+        <Tabs.Screen name="dashboard" />
 
-        <Tabs.Screen
-          name="dataDisplay"
-          options={{
-            title: "Data",
-            tabBarIcon(props) {
-              return (
-                <Icon
-                  source="chart-bar"
-                  size={30}
-                  color={`${props.focused ? "#C0091E" : "#C4C4C4"}`}
-                />
-              );
-            },
-          }}
-        />
-        <Tabs.Screen
-          name="Towers"
-          options={{
-            tabBarIcon(props) {
-              return (
-                <Icon
-                  source="transmission-tower"
-                  size={30}
-                  color={`${props.focused ? "#C0091E" : "#C4C4C4"}`}
-                />
-              );
-            },
-          }}
-        />
+        <Tabs.Screen name="data" />
+        <Tabs.Screen name="towers" />
         {/* <Tabs.Screen
         name="setting"
         options={{

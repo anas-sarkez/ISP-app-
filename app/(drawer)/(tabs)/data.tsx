@@ -3,12 +3,12 @@ import React from "react";
 import { Button, Icon } from "react-native-paper";
 import { router } from "expo-router";
 
-const Plane = () => {
+const data = () => {
   return (
     <ImageBackground
       imageStyle={{ resizeMode: "cover" }}
       className="w-screen bg-center items-center  h-[104%]"
-      source={require("../../../assets/images/databg.png")}
+      source={require("../../../assets/images/background_page.png")}
     >
       <View className="w-[90%] h-[80%] mt-[23%] bg-transparent justify-center items-center">
         <View
@@ -74,7 +74,7 @@ const Plane = () => {
   );
 };
 
-export default Plane;
+export default data;
 const styles = StyleSheet.create({
   box: {
     shadowColor: "rgba(0, 0, 0, 1)",
