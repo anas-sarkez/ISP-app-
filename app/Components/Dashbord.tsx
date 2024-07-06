@@ -14,6 +14,7 @@ import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { Avatar, Button, Icon } from "react-native-paper";
 import { Easing } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
+import ImageSlider from "../Components/ImageSlider";
 const Dashboard = () => {
   const progress = useDrawerProgress();
   const statusbar = () => StatusBar.setBarStyle("light-content", true);
@@ -44,7 +45,7 @@ const Dashboard = () => {
             height: "40%",
           }}
         />
-        <View className="h-[80%]  justify-start items-center ">
+        <View className="h-[80%] w-full  justify-start items-center ">
           <View className=" w-[90%]  flex-row  -translate-x-8 justify-evenly items-center ">
             <Icon source="card-account-details" size={45} color="#fff" />
             <Text
@@ -87,18 +88,18 @@ const Dashboard = () => {
               </Text>
             </View>
           </View>
-          <View className="w-full flex-row text-center mt-[8%] items-center ">
+          <View className="w-full flex-row text-center justify-center mt-[8%] items-center ">
             <Text className="text-[24px] mr-2 font-bold text-[#331919]">
               Balance:{" "}
               <Text className="text-[22px] font-semibold ">10.000 LYD </Text>
             </Text>
             <Icon source="account-cash" size={25} color="#7c1e1e" />
           </View>
-
-          <View className="items-center w-[80%] mb-7">
-            <Text className="text-[16px] font-bold text-[#1D1D2E]">
-              Anouncment
-            </Text>
+          <Text className="text-[16px] mt-4 font-bold text-[#1D1D2E]">
+            Sela Announcement
+          </Text>
+          <View className="items-center pb-3 justify-center mt-[10%] h-[35%] w-[90%] mb-7">
+            <ImageSlider />
           </View>
         </View>
       </View>
