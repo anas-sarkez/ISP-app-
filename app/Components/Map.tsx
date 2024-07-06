@@ -6,7 +6,7 @@ import * as Location from "expo-location";
 import { TouchableHighlight } from "react-native-gesture-handler";
 
 export default function Map() {
-  const [to, setTo] = useState("Map");
+  const [to, setTo] = useState("towers");
 
   const [location, setLocation] = useState({});
   const [errorMsg, setErrorMsg] = useState("");

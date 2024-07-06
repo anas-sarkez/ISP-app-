@@ -33,7 +33,7 @@ const Home = () => {
         background-size: 3em 3em;
         background-color: #ffffff;
         opacity: 1 */}
-      <View className="w-fill h-[100%] items-center bg-white justify-center">
+      <View className="w-fill h-[100%] items-center bg-[#f2f2f2] justify-center">
         <LinearGradient
           colors={["#000", "#69252e", "#C0091E"]}
           style={{
@@ -46,10 +46,10 @@ const Home = () => {
             width: "140%",
             right: 0,
             top: -30,
-            height: "40%",
+            height: "44%",
           }}
         />
-        <LinearGradient
+        {/* <LinearGradient
           colors={["#C0091E", "#69252e", "#000"]}
           style={{
             position: "absolute",
@@ -63,15 +63,15 @@ const Home = () => {
             bottom: -40,
             height: 140,
           }}
-        />
+        /> */}
         <View className="h-[80%] w-full  justify-start items-center ">
-          <View className=" w-[90%]  flex-row  -translate-x-8 justify-evenly items-center ">
+          <View className=" w-[90%]  flex-row   justify-evenly items-center ">
             <Icon source="card-account-details" size={45} color="#fff" />
             <Text
               style={styles.box}
               className=" text-2xl font-semibold  py-1 text-white  "
             >
-              NotAnas
+              Anas02
             </Text>
           </View>
 
@@ -88,12 +88,12 @@ const Home = () => {
                   alignItems: "center",
                   marginTop: "-33%",
                 }}
-                fill={50}
+                fill={60}
                 tintColor="#C0091E"
                 rotation={-180}
                 dashedBackground={{ gap: 0, width: 0 }}
                 dashedTint={{ gap: 2, width: 2 }}
-                backgroundColor="#fff"
+                backgroundColor="#f2f2f2"
                 lineCap="butt"
                 duration={2700}
                 easing={Easing.inOut(Easing.ease)}
@@ -114,10 +114,10 @@ const Home = () => {
             </Text>
             <Icon source="account-cash" size={25} color="#7c1e1e" />
           </View>
-          <Text className="text-[16px] mt-4 font-bold text-[#1D1D2E]">
+          <Text className="text-[16px] py-3 mt-4 font-bold text-[#1D1D2E]">
             Sela Announcement
           </Text>
-          <View className="items-center justify-center h-[35%] w-[90%]">
+          <View className="items-center pb-[7%] justify-center h-[35%] w-[90%]">
             <ImageSlider />
           </View>
         </View>

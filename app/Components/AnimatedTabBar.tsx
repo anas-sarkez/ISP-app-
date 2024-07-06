@@ -87,7 +87,7 @@ const AnimatedTabBar = ({
           fill="#fff"
           d="M0 60V0c11.046 0 20 8.954 20 20v10c0 16.569 15.67 30 35 30H0zm90-30c0 16.569-15.67 30-35 30h55V0C98.954 0 90 8.954 90 20v10z"
         />
-        <View className="absolute w-[100%] h-[10px] top-[60px] bg-white"></View>
+        <View className="absolute w-[100%] h-[100px] top-[60px] bg-white"></View>
       </AnimatedSvg>
 
       <View style={styles.tabBarContainer}>
@@ -117,7 +117,7 @@ const AnimatedTabBar = ({
             <TabBarComponent
               key={route.key}
               active={active}
-              isFocused
+              isFocused={isFocused}
               label={label}
               onLayout={(e) => handleLayout(e, index)}
               onPress={onPress}
@@ -160,7 +160,7 @@ const TabBarComponent = ({
 
   const animatedIconContainerStyles = useAnimatedStyle(() => {
     return {
-      opacity: withTiming(active ? 1 : 0.5, { duration: 250 }),
+      opacity: withTiming(active ? 1 : 0.4, { duration: 250 }),
     };
   });
 
@@ -174,29 +174,33 @@ const TabBarComponent = ({
       >
         {label === "menu" ? (
           <Icon
-            color={isFocused ? "black" : "red"}
+            color={isFocused ? "#ad3939" : "black"}
             source="menu"
             size={30}
             // color={`${isDrawerOpen ? "#C0091E" : "#C4C4C4"}`}
           />
         ) : label === "home" ? (
-          <Icon color={isFocused ? "black" : "red"} source="home" size={30} />
+          <Icon
+            color={isFocused ? "#ad3939" : "#000"}
+            source="home"
+            size={30}
+          />
         ) : label === "map" ? (
           <Icon
-            color={isFocused ? "black" : "red"}
+            color={isFocused ? "#ad3939" : "black"}
             source="transmission-tower"
             size={30}
           />
         ) : label === "dashboard" ? (
           <Icon
-            color={isFocused ? "black" : "red"}
+            color={isFocused ? "#ad3939" : "#000"}
             source="chart-bar"
             size={30}
           />
         ) : null}
         <Text
           className="text-[10px]"
-          style={{ color: isFocused ? "black" : "red" }}
+          style={{ color: isFocused ? "#ad3939" : "black" }}
         >
           {label}
         </Text>

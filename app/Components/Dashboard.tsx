@@ -5,8 +5,8 @@ import { router } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 const Dashboard = () => {
   return (
-    <View className="w-[100%] h-[100%] pb-[25%] bg-white justify-center items-center">
-      <LinearGradient
+    <View className="w-[100%] h-[100%] pb-[25%] bg-[#ebeaea] justify-center items-center">
+      {/* <LinearGradient
         colors={["#C0091E", "#69252e", "#000"]}
         style={{
           position: "absolute",
@@ -20,16 +20,16 @@ const Dashboard = () => {
           bottom: -40,
           height: 140,
         }}
-      />
+      /> */}
       <View className="flex-row  w-[80%] mt-[15%] items-center justify-between">
         <Text className="text-[20px] font-bold text-[#6b6b6b]">
           <Text className="font-black text-[18px] text-[#505050]">Name:</Text>{" "}
           Anas Sarkiz
         </Text>
-        <Text className="text-[20px] font-bold text-[#6b6b6b]">
+        <Text className="text-[20px] font-bold text-[#329737]">
           <Text className="font-black text-[18px] text-[#505050] ">
             Status:
-          </Text>{" "}
+          </Text>
           Active
         </Text>
       </View>

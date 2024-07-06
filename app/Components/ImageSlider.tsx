@@ -74,7 +74,7 @@ const ImageSlider = () => {
   };
   const renderItem = ({ item }: { item: { image: any; id: any } }) => {
     return (
-      <View className="border border-black">
+      <View>
         <Image
           source={item.image}
           style={{ width: screenWidth, height: 200 }}

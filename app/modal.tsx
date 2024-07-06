@@ -32,7 +32,7 @@ export default function Modal() {
         <View className="w-[90%] py-[5%]">
           <TextInput
             mode="outlined"
-            label="Card Number"
+            label="  Card Number"
             value={cardNo.toString()}
             onChange={(e) => {
               setCardNo(e.nativeEvent.text);
@@ -43,6 +43,7 @@ export default function Modal() {
             placeholder=" 1234 5678 9012 3456"
             activeOutlineColor="#C0091E"
             outlineColor="#C4C4C4"
+            activeUnderlineColor="#C0091E"
             placeholderTextColor="#C4C4C4"
             maxLength={8}
             textColor="#0F0017"
