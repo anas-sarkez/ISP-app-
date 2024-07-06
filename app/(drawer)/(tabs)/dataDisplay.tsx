@@ -2,8 +2,10 @@ import { View, Text, ImageBackground, StyleSheet } from "react-native";
 import React from "react";
 import { Button, Icon } from "react-native-paper";
 import { router } from "expo-router";
+import Datap from "@/app/Components/datap";
 
 const Plane = () => {
+  return <Datap />;
   return (
     <ImageBackground
       imageStyle={{ resizeMode: "cover" }}

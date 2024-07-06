@@ -14,6 +14,13 @@ export default function Modal() {
   const [cardNo, setCardNo] = useState("");
   const [valid, setValid] = useState(false);
 
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: false,
+      shouldSetBadge: false,
+    }),
+  });
   return (
     <ScrollView className="w-full bg-[#fff] ">
       <View className="items-center  mb-9 justify-center">
@@ -77,17 +84,14 @@ export default function Modal() {
               if (cardNo == "12345678" && shouldContinue) {
                 await Notifications.scheduleNotificationAsync({
                   content: {
-                    title: "Success ✅",
-                    body: "10 LYD Added",
-                    data: { data: "goes here", test: { test1: "more data" } },
+                    title: "Sela",
+                    body: "You have added 10 LYD",
                   },
-                  trigger: { seconds: 2 },
+                  trigger: {
+                    seconds: 1,
+                  },
                 });
-                Notifications.setNotificationChannelGroupAsync;
                 setBalance((prev) => prev + 10);
-                const massage =
-                  "10 LYD Added" + "\n" + "Balance: " + balance + " LYD 💸"; //adding 10 LYD to balance not worked
-                Alert.alert("Success ✅", massage);
               } else {
                 Alert.alert("Error", "Invalid Card Number");
               }
@@ -141,11 +145,17 @@ export default function Modal() {
                     if (shouldContinue) {
                       setValid(true);
                       setBalance(balance - selectedPackage.price);
-
-                      Alert.alert(
-                        "Success ✅",
-                        " \n Package renewed successfully"
-                      );
+                      await Notifications.scheduleNotificationAsync({
+                        content: {
+                          title: "Success ✅",
+                          body: "Package Renewed",
+                          data: {
+                            data: "goes here",
+                            test: { test1: "more data" },
+                          },
+                        },
+                        trigger: { seconds: 0.1 },
+                      });
                     }
                     if (!shouldContinue) {
                       return;
@@ -396,13 +406,3 @@ const styles = StyleSheet.create({
   },
 });
 const stylesType: StyleSheet.NamedStyles<any> = styles;
-async function schedulePushNotification() {
-  await Notifications.scheduleNotificationAsync({
-    content: {
-      title: "You've got mail! 📬",
-      body: "Here is the notification body",
-      data: { data: "goes here", test: { test1: "more data" } },
-    },
-    trigger: { seconds: 2 },
-  });
-}
