@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import MapView, { Marker } from "react-native-maps";
-import { Alert, Linking, Text, View } from "react-native";
+import MapView, { Callout, Marker } from "react-native-maps";
+import { Alert, Linking, Platform, Text, View } from "react-native";
 import { Button, Icon } from "react-native-paper";
 import * as Location from "expo-location";
+import { TouchableHighlight } from "react-native-gesture-handler";
 
-export default function towers() {
-  const [towers, setTowers] = useState(true);
-  const [Offices, setOffices] = useState(false);
+export default function to() {
+  const [to, setTo] = useState("towers");
+
   const [location, setLocation] = useState({});
   const [errorMsg, setErrorMsg] = useState("");
   const [latitude, setLatitude] = useState(0);
@@ -30,26 +31,34 @@ export default function towers() {
     setLatitude(coordinatelatitude);
     const { longitude } = location.coords;
     setLongitude(longitude);
-    if (latitude !== 0 && longitude !== 0) {
-      setPending("success");
-    } else {
-      setPending("failed");
-    }
+    // if (latitude !== 0 && longitude !== 0) {
+    //   setPending("success");
+    // } else {
+    //   setPending("failed");
+    // }
   };
 
   useEffect(() => {
     getLocation();
   }, []);
+
   return (
     <View className="h-full w-full bg-[#EDEDED] items-center justify-center">
-      <View className="h-[10%] w-full items-center justify-center">
-        <Text className="text-[24px] mt-10 font-bold text-[#7c1e1e]">
-          {!towers ? "Towers" : "Offices"}
-        </Text>
-      </View>
       <MapView
-        className="h-[50%] w-[95%] mt-7"
-        style={{ borderRadius: 30 }}
+        mapType="standard"
+        customMapStyle={Platform.OS === "android" ? mapCustomStyle : []}
+        userInterfaceStyle="dark"
+        showsUserLocation={true}
+        showsCompass={true}
+        showsMyLocationButton={true}
+        showsBuildings={true}
+        showsIndoors={true}
+        showsPointsOfInterest={true}
+        showsScale={true}
+        userLocationCalloutEnabled={true}
+        loadingEnabled={true}
+        style={{ flex: 1 }}
+        className="h-[100%] w-full"
         initialRegion={{
           latitude: 32.6422,
           longitude: 12.7278,
@@ -57,71 +66,75 @@ export default function towers() {
           longitudeDelta: 0.5,
         }}
       >
-        {pending !== "failed" && (
+        <Text className="text-[30px] text-center mt-32 font-bold text-[#fff]">
+          {to === "towers" ? "Towers" : "Offices"}
+        </Text>
+
+        {to === "towers" && (
           <Marker
-            pinColor="yellow"
-            title="Your Current Location"
-            description="Your Current Location Description"
-            coordinate={{
-              latitude: latitude,
-              longitude: longitude,
-            }}
-          />
-        )}
-        {towers && (
-          <Marker
-            pinColor="#7c1e1e"
             title="Tower 1"
             coordinate={{
               latitude: 32.6122,
               longitude: 12.7278,
             }}
-          />
+          >
+            <Icon size={40} source="radio-tower" color="#7c1e1e"></Icon>
+          </Marker>
         )}
-        {towers && (
+        {to === "towers" && (
           <Marker
-            pinColor="#7c1e1e"
             title="Tower 2"
+            focusable={true}
             coordinate={{
               latitude: 32.6942,
               longitude: 12.6278,
             }}
-          />
+          >
+            <Icon size={40} source="radio-tower" color="#7c1e1e"></Icon>
+          </Marker>
         )}
-        {towers && (
+        {to === "towers" && (
           <Marker
-            pinColor="#7c1e1e"
             title="Tower 3"
             coordinate={{
               latitude: 32.7912,
               longitude: 12.8278,
             }}
-          />
+          >
+            <Icon size={40} source="radio-tower" color="#7c1e1e"></Icon>
+          </Marker>
         )}
-        {towers && (
+        {to === "towers" && (
           <Marker
-            pinColor="#7c1e1e"
             title="Tower 4"
             coordinate={{
               latitude: 32.7402,
               longitude: 12.9978,
             }}
-          />
+          >
+            <Icon size={40} source="radio-tower" color="#7c1e1e"></Icon>
+          </Marker>
         )}
-        {Offices && (
+        {to === "offices" && (
           <Marker
             pinColor="#331919"
-            title="office 1"
+            title="Main office"
             coordinate={{
-              latitude: 32.7122,
-              longitude: 12.7278,
+              latitude: 32.750092,
+              longitude: 12.752065,
             }}
             onPress={() => {
               setOffceDescription("office 1");
             }}
-          />
+          >
+            <Icon
+              size={40}
+              source="office-building-marker"
+              color="#7c1e1e"
+            ></Icon>
+          </Marker>
         )}
-        {Offices && (
+        {to === "offices" && (
           <Marker
             pinColor="#331919"
             title="Office 2"
@@ -132,9 +145,11 @@ export default function towers() {
             onPress={() => {
               setOffceDescription("office 2");
             }}
-          />
+          >
+            <Icon size={40} source="store-marker" color="#7c1e1e"></Icon>
+          </Marker>
         )}
-        {Offices && (
+        {to === "offices" && (
           <Marker
             pinColor="#331919"
             title="Office 3"
@@ -145,9 +160,11 @@ export default function towers() {
             onPress={() => {
               setOffceDescription("office 3");
             }}
-          />
+          >
+            <Icon size={40} source="store-marker" color="#7c1e1e"></Icon>
+          </Marker>
         )}
-        {Offices && (
+        {to === "offices" && (
           <Marker
             pinColor="#331919"
             title="Office 4"
@@ -158,77 +175,186 @@ export default function towers() {
             onPress={() => {
               setOffceDescription("office 4");
             }}
-          />
+          >
+            <Icon size={40} source="store-marker" color="#7c1e1e"></Icon>
+          </Marker>
         )}
       </MapView>
-      <View className="h-[10%] w-[100%] items-center flex-row justify-around">
-        {/* <Button
-          mode="contained"
-          className="bg-[#7c1e1e] text-white mt-[10%] w-[35%] rounded-3xl"
-          onPress={() => {
-            setTowers(true);
-            setOffices(false);
-          }}
-        >
-          Towers
-        </Button> */}
+      <View className="absolute bottom-[7%] w-full items-center justify-center">
         <Button
           mode="contained"
+          className="bg-[#7c1e1e] w-[40%] rounded-full"
           labelStyle={{ color: "white" }}
-          className="bg-[#7c1e1e] text-white mt-[10%] w-[35%] rounded-3xl"
           onPress={() => {
-            setTowers((prev) => !prev);
-            setOffices((prev) => !prev);
+            setTo((prev) => {
+              return prev === "towers" ? "offices" : "towers";
+            });
           }}
         >
-          {!towers ? "Towers" : "Offices"}
+          {to === "towers" ? "Offices" : "Towers"}
         </Button>
       </View>
-      {pending === "pending" ||
-        (pending === "success" && (
-          <View className="h-[10%] w-[100%] items-center  justify-around mt-[10%]"></View>
-        ))}
-
-      {(pending === "failed" || pending === "refresh") && (
-        <View className="h-[10%] w-[100%] items-center  justify-around mt-[10%]">
-          <Text className="text-red-500 font-[24px] text-center">
-            You need to allow location permission {"\n"} to see your location.
-          </Text>
+      {pending === "failed" && (
+        <View className="absolute bottom-[3%] right-2 w-full items-end">
           <Button
+            className="bg-[#7c1e1e] rounded-full"
             mode="contained"
             labelStyle={{ color: "white" }}
-            className="bg-[#7c1e1e] text-white  w-[35%] rounded-3xl"
-            onPress={async () => {
-              if (pending == "failed") {
-                Alert.alert(
-                  "Failed to get Location",
-                  "Do you want to try again?",
-                  [
-                    {
-                      text: "Cancel",
-                      onPress: () => {
-                        setPending("failed");
-                      },
-                      style: "cancel",
+            onPress={() => {
+              Alert.alert(
+                "Failed to get Location",
+                "Do you want to try again?",
+                [
+                  {
+                    text: "Cancel",
+                    onPress: () => {
+                      setPending("failed");
                     },
-                    {
-                      text: "OK",
-                      onPress: () => {
-                        setPending("refresh");
-                        Linking.openSettings();
-                      },
+                    style: "cancel",
+                  },
+                  {
+                    text: "Settings",
+                    onPress: () => {
+                      setPending("refresh");
+                      Linking.openSettings();
+                      getLocation();
                     },
-                  ]
-                );
-              } else {
-                getLocation();
-              }
+                  },
+                ]
+              );
+
+              getLocation();
             }}
           >
-            {pending === "refresh" ? "Refresh" : "open Settings"}
+            <Icon size={20} source="refresh" color="white"></Icon>
           </Button>
         </View>
       )}
     </View>
   );
 }
+const mapCustomStyle = [
+  { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+  { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+  { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+  {
+    featureType: "administrative.locality",
+    elementType: "labels.text.fill",
+    stylers: [{ color: "#d59563" }],
+  },
+  {
+    featureType: "poi",
+    elementType: "labels.text.fill",
+    stylers: [{ color: "#d59563" }],
+  },
+  {
+    featureType: "poi.park",
+    elementType: "geometry",
+    stylers: [{ color: "#263c3f" }],
+  },
+  {
+    featureType: "poi.park",
+    elementType: "labels.text.fill",
+    stylers: [{ color: "#6b9a76" }],
+  },
+  {
+    featureType: "road",
+    elementType: "geometry",
+    stylers: [{ color: "#38414e" }],
+  },
+  {
+    featureType: "road",
+    elementType: "geometry.stroke",
+    stylers: [{ color: "#212a37" }],
+  },
+  {
+    featureType: "road",
+    elementType: "labels.text.fill",
+    stylers: [{ color: "#9ca5b3" }],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "geometry",
+    stylers: [{ color: "#746855" }],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "geometry.stroke",
+    stylers: [{ color: "#1f2835" }],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "labels.text.fill",
+    stylers: [{ color: "#f3d19c" }],
+  },
+  {
+    featureType: "transit",
+    elementType: "geometry",
+    stylers: [{ color: "#2f3948" }],
+  },
+  {
+    featureType: "transit.station",
+    elementType: "labels.text.fill",
+    stylers: [{ color: "#d59563" }],
+  },
+  {
+    featureType: "water",
+    elementType: "geometry",
+    stylers: [{ color: "#17263c" }],
+  },
+  {
+    featureType: "water",
+    elementType: "labels.text.fill",
+    stylers: [{ color: "#515c6d" }],
+  },
+  {
+    featureType: "water",
+    elementType: "labels.text.stroke",
+    stylers: [{ color: "#17263c" }],
+  },
+];
+/**  {pending === "pending" ||
+          (pending === "success" && (
+            <View className="h-[10%] w-[100%] items-center  justify-around mt-[10%]"></View>
+          ))}
+
+        {(pending === "failed" || pending === "refresh") && (
+          <View className="h-[10%] w-[100%] items-center  justify-around mt-[10%]">
+            <Text className="text-red-500 font-[24px] text-center">
+              You need to allow location permission {"\n"} to see your location.
+            </Text>
+            <Button
+              mode="contained"
+              labelStyle={{ color: "white" }}
+              className="bg-[#7c1e1e] text-white  w-[35%] rounded-3xl"
+              onPress={async () => {
+                if (pending == "failed") {
+                  Alert.alert(
+                    "Failed to get Location",
+                    "Do you want to try again?",
+                    [
+                      {
+                        text: "Cancel",
+                        onPress: () => {
+                          setPending("failed");
+                        },
+                        style: "cancel",
+                      },
+                      {
+                        text: "OK",
+                        onPress: () => {
+                          setPending("refresh");
+                          Linking.openSettings();
+                        },
+                      },
+                    ]
+                  );
+                } else {
+                  getLocation();
+                }
+              }}
+            >
+              {pending === "refresh" ? "Refresh" : "open Settings"}
+            </Button>
+          </View>
+        )} */

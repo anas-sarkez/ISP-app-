@@ -81,6 +81,7 @@ const Login = () => {
       }
     })();
   }, []);
+
   useEffect(() => {
     if (isBiometricSupported) authenticateUser();
   }, [isBiometricSupported]);
@@ -159,6 +160,16 @@ const Login = () => {
               uncheckedColor="#0F0017"
               color="#C0091E"
             />
+            <Button
+              onPress={authenticateUser}
+              mode="elevated"
+              className="disabled:border mt-12 mb-4 w-[50%] disabled:bg-red-500 disabled:border-[#C4C4C4] disabled:text-red-500"
+              buttonColor="#0F0017"
+              textColor="white"
+              labelStyle={{ color: "#fff", width: "100%" }}
+            >
+              Log in with Biometric
+            </Button>
           </View>
         </View>
       </SafeAreaView>
