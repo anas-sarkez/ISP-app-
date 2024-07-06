@@ -5,8 +5,8 @@ import { Button, Icon } from "react-native-paper";
 import * as Location from "expo-location";
 import { TouchableHighlight } from "react-native-gesture-handler";
 
-export default function to() {
-  const [to, setTo] = useState("towers");
+export default function Map() {
+  const [to, setTo] = useState("Map");
 
   const [location, setLocation] = useState({});
   const [errorMsg, setErrorMsg] = useState("");
@@ -66,11 +66,7 @@ export default function to() {
           longitudeDelta: 0.5,
         }}
       >
-        <Text className="text-[30px] text-center mt-32 font-bold text-[#fff]">
-          {to === "towers" ? "Towers" : "Offices"}
-        </Text>
-
-        {to === "towers" && (
+        {to === "Map" && (
           <Marker
             title="Tower 1"
             coordinate={{
@@ -81,7 +77,7 @@ export default function to() {
             <Icon size={40} source="radio-tower" color="#7c1e1e"></Icon>
           </Marker>
         )}
-        {to === "towers" && (
+        {to === "Map" && (
           <Marker
             title="Tower 2"
             focusable={true}
@@ -93,7 +89,7 @@ export default function to() {
             <Icon size={40} source="radio-tower" color="#7c1e1e"></Icon>
           </Marker>
         )}
-        {to === "towers" && (
+        {to === "Map" && (
           <Marker
             title="Tower 3"
             coordinate={{
@@ -104,7 +100,7 @@ export default function to() {
             <Icon size={40} source="radio-tower" color="#7c1e1e"></Icon>
           </Marker>
         )}
-        {to === "towers" && (
+        {to === "Map" && (
           <Marker
             title="Tower 4"
             coordinate={{
@@ -180,10 +176,15 @@ export default function to() {
           </Marker>
         )}
       </MapView>
-      <View className="absolute bottom-[7%] w-full items-center justify-center">
+      <View className=" w-full items-center absolute left-0 top-[10%]">
+        <Text className="text-[30px] font-bold text-[#fff]">
+          {to === "towers" ? "Towers" : "Offices"}
+        </Text>
+      </View>
+      <View className="absolute bottom-[7%] mb-20 w-full items-center justify-center">
         <Button
           mode="contained"
-          className="bg-[#7c1e1e] w-[40%] rounded-full"
+          className="bg-[#7c1e1e] w-[40%] rounded-full "
           labelStyle={{ color: "white" }}
           onPress={() => {
             setTo((prev) => {
@@ -195,7 +196,7 @@ export default function to() {
         </Button>
       </View>
       {pending === "failed" && (
-        <View className="absolute bottom-[3%] right-2 w-full items-end">
+        <View className="absolute bottom-[2.5%] mb-20 right-2 w-full items-end">
           <Button
             className="bg-[#7c1e1e] rounded-full"
             mode="contained"

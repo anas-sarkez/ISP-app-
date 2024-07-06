@@ -18,7 +18,7 @@ const _layout = () => {
           headerShown: false,
         }}
         tabBar={(props) => <AnimatedTabBar {...props} />}
-        initialRouteName="dashboard"
+        initialRouteName="home"
         backBehavior="initialRoute"
       >
         <Tabs.Screen
@@ -34,10 +34,10 @@ const _layout = () => {
           })}
         />
 
-        <Tabs.Screen name="dashboard" />
+        <Tabs.Screen name="home" />
 
-        <Tabs.Screen name="data" />
-        <Tabs.Screen name="towers" />
+        <Tabs.Screen name="dashboard" />
+        <Tabs.Screen name="map" />
         {/* <Tabs.Screen
         name="setting"
         options={{

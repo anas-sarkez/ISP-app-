@@ -179,19 +179,15 @@ const TabBarComponent = ({
             size={30}
             // color={`${isDrawerOpen ? "#C0091E" : "#C4C4C4"}`}
           />
-        ) : label === "dashboard" ? (
-          <Icon
-            color={isFocused ? "black" : "red"}
-            source="view-dashboard"
-            size={30}
-          />
-        ) : label === "towers" ? (
+        ) : label === "home" ? (
+          <Icon color={isFocused ? "black" : "red"} source="home" size={30} />
+        ) : label === "map" ? (
           <Icon
             color={isFocused ? "black" : "red"}
             source="transmission-tower"
             size={30}
           />
-        ) : label === "data" ? (
+        ) : label === "dashboard" ? (
           <Icon
             color={isFocused ? "black" : "red"}
             source="chart-bar"

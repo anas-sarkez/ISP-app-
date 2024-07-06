@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { View, Text, Alert, StyleSheet, ScrollView } from "react-native";
 import { List, TextInput, Button, Icon } from "react-native-paper";
-import { packege } from "./Components/packege";
-import { confirm } from "./Components/confirm";
+import { packege } from "./helpers/packege";
+import { confirm } from "./helpers/confirm";
 import * as Notifications from "expo-notifications";
 export default function Modal() {
   const [text, setText] = useState("");
