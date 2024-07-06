@@ -65,7 +65,7 @@ const DrawerContent = (props: any) => {
             )}
             label={"About the app"}
             onPress={() => {
-              router.push("/(drawer)/(tabs)/Towers");
+              router.push("/(drawer)/(tabs)/Map");
             }}
             labelStyle={{ color: "#7c1e1e", fontWeight: "bold" }}
           />

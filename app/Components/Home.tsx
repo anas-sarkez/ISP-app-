@@ -15,7 +15,7 @@ import { Avatar, Button, Icon } from "react-native-paper";
 import { Easing } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 import ImageSlider from "../Components/ImageSlider";
-const Dashboard = () => {
+const Home = () => {
   const progress = useDrawerProgress();
   const statusbar = () => StatusBar.setBarStyle("light-content", true);
   const router = useRouter();
@@ -29,7 +29,11 @@ const Dashboard = () => {
         source={require("../../assets/images/dashboard1.png")}
         resizeMode="cover" */}
       {/* > */}
-      <View className="w-fill h-[100%] items-center bg-[#ebebeb] justify-center">
+      {/* background: linear-gradient(45deg, #e34646 10%,transparent 10%,transparent 90%,#e34646 90%),linear-gradient(135deg, transparent 40%, #e3464680 40%, #e3464680 60%, transparent 0),linear-gradient(45deg, transparent 40%, #e34646 40%, #e34646 60%, transparent 0);
+        background-size: 3em 3em;
+        background-color: #ffffff;
+        opacity: 1 */}
+      <View className="w-fill h-[100%] items-center bg-white justify-center">
         <LinearGradient
           colors={["#000", "#69252e", "#C0091E"]}
           style={{
@@ -45,6 +49,21 @@ const Dashboard = () => {
             height: "40%",
           }}
         />
+        <LinearGradient
+          colors={["#C0091E", "#69252e", "#000"]}
+          style={{
+            position: "absolute",
+            left: -85,
+            borderWidth: 0,
+            borderCurve: "circular",
+            borderTopRightRadius: 400,
+            borderTopLeftRadius: 400,
+            width: "140%",
+            right: 0,
+            bottom: -40,
+            height: 140,
+          }}
+        />
         <View className="h-[80%] w-full  justify-start items-center ">
           <View className=" w-[90%]  flex-row  -translate-x-8 justify-evenly items-center ">
             <Icon source="card-account-details" size={45} color="#fff" />
@@ -52,7 +71,7 @@ const Dashboard = () => {
               style={styles.box}
               className=" text-2xl font-semibold  py-1 text-white  "
             >
-              Anas02
+              NotAnas
             </Text>
           </View>
 
@@ -98,7 +117,7 @@ const Dashboard = () => {
           <Text className="text-[16px] mt-4 font-bold text-[#1D1D2E]">
             Sela Announcement
           </Text>
-          <View className="items-center pb-3 justify-center mt-[10%] h-[35%] w-[90%] mb-7">
+          <View className="items-center justify-center h-[35%] w-[90%]">
             <ImageSlider />
           </View>
         </View>
@@ -108,7 +127,7 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Home;
 
 const styles = StyleSheet.create({
   box: {

@@ -7,7 +7,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as localAuthentication from "expo-local-authentication";
 
 const Login = () => {
-  // return Redirect({ href: "/dashboard" });
+  // return Redirect({ href: "/home" });
   const [checked, setChecked] = useState<
     "unchecked" | "checked" | "indeterminate"
   >("unchecked");
@@ -25,11 +25,11 @@ const Login = () => {
   const handleSignIn = () => {
     if (username === "" || password === "") {
       Alert.alert("username or password is empty");
-      // router.replace("/dashboard");
+      // router.replace("/home");
       return;
     } // U need to replace this with return;
     if ((username === myUsername || "anas") && (myPassword === password || "a"))
-      router.replace("/dashboard");
+      router.replace("/home");
     else {
       Alert.alert("Wrong username or password");
       return;
@@ -50,7 +50,7 @@ const Login = () => {
       if (authenticationResult.success) {
         setIsAuthenticated(true);
         await AsyncStorage.setItem("authenticationStatus", "authenticated");
-        router.replace("/dashboard");
+        router.replace("/home");
       }
 
       console.log(authenticationResult);
@@ -111,7 +111,6 @@ const Login = () => {
               value={username}
               onChangeText={(e) => setUsername(e)}
               onEndEditing={() => passwordTextInput.current?.focus()}
-              // left={<TextInput.Icon icon="account-circle" color="#C0091E" />}
             />
             <TextInput
               mode="outlined"

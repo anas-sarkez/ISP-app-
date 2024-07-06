@@ -3,19 +3,24 @@ import React from "react";
 import { Button, Icon } from "react-native-paper";
 import { router } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
-const datap = () => {
+const Dashboard = () => {
   return (
-    <View className="w-[100%] h-[100%]  bg-white justify-center items-center">
-      {/* <LinearGradient
-        colors={["#fff", "#fff", "#ff4f57"]}
+    <View className="w-[100%] h-[100%] pb-[25%] bg-white justify-center items-center">
+      <LinearGradient
+        colors={["#C0091E", "#69252e", "#000"]}
         style={{
           position: "absolute",
-          left: 0,
+          left: -85,
+          borderWidth: 0,
+          borderCurve: "circular",
+          borderTopRightRadius: 400,
+          borderTopLeftRadius: 400,
+          width: "140%",
           right: 0,
-          top: 0,
-          height: "100%",
+          bottom: -40,
+          height: 140,
         }}
-      /> */}
+      />
       <View className="flex-row  w-[80%] mt-[15%] items-center justify-between">
         <Text className="text-[20px] font-bold text-[#6b6b6b]">
           <Text className="font-black text-[18px] text-[#505050]">Name:</Text>{" "}
@@ -110,13 +115,13 @@ const datap = () => {
       </View>
       <Button
         style={stylesType.box}
-        labelStyle={{ color: "white" }}
+        labelStyle={{ color: "white", width: "auto" }}
         icon="database-cog-outline"
         mode="contained"
         className="bg-[#ad3939] text-white mt-[10%] w-[60%] rounded-3xl"
         onPress={() => router.push("/modal")}
       >
-        Data Plane
+        Data Plan
       </Button>
     </View>
   );
@@ -133,4 +138,4 @@ const styles = StyleSheet.create({
   },
 });
 const stylesType: StyleSheet.NamedStyles<any> = styles;
-export default datap;
+export default Dashboard;

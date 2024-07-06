@@ -9,23 +9,23 @@ const ImageSlider = () => {
   const images = [
     {
       id: 1,
-      image: require("../../assets/images/slider/slide1.avif"),
+      image: require("../../assets/images/slider/slide1.jpg"),
     },
     {
       id: 2,
-      image: require("../../assets/images/slider/slide2.avif"),
+      image: require("../../assets/images/slider/slide2.jpg"),
     },
     {
       id: 3,
-      image: require("../../assets/images/slider/slide3.avif"),
+      image: require("../../assets/images/slider/slide3.jpg"),
     },
     {
       id: 4,
-      image: require("../../assets/images/slider/slide4.avif"),
+      image: require("../../assets/images/slider/slide4.jpg"),
     },
     {
       id: 5,
-      image: require("../../assets/images/slider/slide4.avif"),
+      image: require("../../assets/images/slider/slide5.jpg"),
     },
   ];
   useEffect(() => {
@@ -74,7 +74,7 @@ const ImageSlider = () => {
   };
   const renderItem = ({ item }: { item: { image: any; id: any } }) => {
     return (
-      <View>
+      <View className="border border-black">
         <Image
           source={item.image}
           style={{ width: screenWidth, height: 200 }}
