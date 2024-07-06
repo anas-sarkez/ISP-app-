@@ -66,7 +66,7 @@ export default function Map() {
           longitudeDelta: 0.5,
         }}
       >
-        {to === "Map" && (
+        {to === "towers" && (
           <Marker
             title="Tower 1"
             coordinate={{
@@ -77,7 +77,7 @@ export default function Map() {
             <Icon size={40} source="radio-tower" color="#7c1e1e"></Icon>
           </Marker>
         )}
-        {to === "Map" && (
+        {to === "towers" && (
           <Marker
             title="Tower 2"
             focusable={true}
@@ -89,7 +89,7 @@ export default function Map() {
             <Icon size={40} source="radio-tower" color="#7c1e1e"></Icon>
           </Marker>
         )}
-        {to === "Map" && (
+        {to === "towers" && (
           <Marker
             title="Tower 3"
             coordinate={{
@@ -100,7 +100,7 @@ export default function Map() {
             <Icon size={40} source="radio-tower" color="#7c1e1e"></Icon>
           </Marker>
         )}
-        {to === "Map" && (
+        {to === "towers" && (
           <Marker
             title="Tower 4"
             coordinate={{
