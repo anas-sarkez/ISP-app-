@@ -14,7 +14,7 @@ import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { Avatar, Button, Icon } from "react-native-paper";
 import { Easing } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
-import ImageSlider from "../Components/ImageSlider";
+import InfiniteSlider from "./InfiniteSlider";
 const Home = () => {
   const progress = useDrawerProgress();
   const statusbar = () => StatusBar.setBarStyle("light-content", true);
@@ -33,7 +33,7 @@ const Home = () => {
         background-size: 3em 3em;
         background-color: #ffffff;
         opacity: 1 */}
-      <View className="w-fill h-[100%] items-center bg-[#f2f2f2] justify-center">
+      <View className="w-fill h-[100%] items-center bg-white justify-center">
         <LinearGradient
           colors={["#000", "#69252e", "#C0091E"]}
           style={{
@@ -46,10 +46,10 @@ const Home = () => {
             width: "140%",
             right: 0,
             top: -30,
-            height: "44%",
+            height: "40%",
           }}
         />
-        {/* <LinearGradient
+        <LinearGradient
           colors={["#C0091E", "#69252e", "#000"]}
           style={{
             position: "absolute",
@@ -63,15 +63,15 @@ const Home = () => {
             bottom: -40,
             height: 140,
           }}
-        /> */}
+        />
         <View className="h-[80%] w-full  justify-start items-center ">
-          <View className=" w-[90%]  flex-row   justify-evenly items-center ">
+          <View className=" w-[90%]  flex-row  -translate-x-8 justify-evenly items-center ">
             <Icon source="card-account-details" size={45} color="#fff" />
             <Text
               style={styles.box}
               className=" text-2xl font-semibold  py-1 text-white  "
             >
-              Anas02
+              NotAnas
             </Text>
           </View>
 
@@ -88,12 +88,12 @@ const Home = () => {
                   alignItems: "center",
                   marginTop: "-33%",
                 }}
-                fill={60}
+                fill={50}
                 tintColor="#C0091E"
                 rotation={-180}
                 dashedBackground={{ gap: 0, width: 0 }}
                 dashedTint={{ gap: 2, width: 2 }}
-                backgroundColor="#f2f2f2"
+                backgroundColor="#fff"
                 lineCap="butt"
                 duration={2700}
                 easing={Easing.inOut(Easing.ease)}
@@ -114,11 +114,11 @@ const Home = () => {
             </Text>
             <Icon source="account-cash" size={25} color="#7c1e1e" />
           </View>
-          <Text className="text-[16px] py-3 mt-4 font-bold text-[#1D1D2E]">
+          {/* <Text className="text-[16px] mt-4 font-bold text-[#1D1D2E]">
             Sela Announcement
-          </Text>
-          <View className="items-center pb-[7%] justify-center h-[35%] w-[90%]">
-            <ImageSlider />
+          </Text> */}
+          <View className="w-full aspect-video">
+            <InfiniteSlider />
           </View>
         </View>
       </View>
