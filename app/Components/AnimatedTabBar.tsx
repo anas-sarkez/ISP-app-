@@ -21,6 +21,7 @@ import Animated, {
 } from "react-native-reanimated";
 import Lottie from "lottie-react-native";
 import { Icon } from "react-native-paper";
+import { useDrawerStatus } from "@react-navigation/drawer";
 
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 
@@ -138,6 +139,7 @@ const TabBarComponent = ({
 }: TabBarComponentProps) => {
   // handle lottie animation -----------------------------------------
   const ref = useRef(null);
+  const drawerProgress = useDrawerStatus();
 
   useEffect(() => {
     if (active && ref?.current) {
@@ -160,7 +162,7 @@ const TabBarComponent = ({
 
   const animatedIconContainerStyles = useAnimatedStyle(() => {
     return {
-      opacity: withTiming(active ? 1 : 0.4, { duration: 250 }),
+      opacity: withTiming(active ? 1 : 1, { duration: 250 }),
     };
   });
 
@@ -174,33 +176,42 @@ const TabBarComponent = ({
       >
         {label === "menu" ? (
           <Icon
-            color={isFocused ? "#ad3939" : "black"}
+            color={drawerProgress == "open" ? "#ad3939" : "black"}
             source="menu"
             size={30}
             // color={`${isDrawerOpen ? "#C0091E" : "#C4C4C4"}`}
           />
         ) : label === "home" ? (
           <Icon
-            color={isFocused ? "#ad3939" : "#000"}
+            color={isFocused && drawerProgress != "open" ? "#ad3939" : "#000"}
             source="home"
             size={30}
           />
         ) : label === "map" ? (
           <Icon
-            color={isFocused ? "#ad3939" : "black"}
+            color={isFocused && drawerProgress != "open" ? "#ad3939" : "#000"}
             source="transmission-tower"
             size={30}
           />
         ) : label === "dashboard" ? (
           <Icon
-            color={isFocused ? "#ad3939" : "#000"}
+            color={isFocused && drawerProgress != "open" ? "#ad3939" : "#000"}
             source="chart-bar"
             size={30}
           />
         ) : null}
         <Text
           className="text-[10px]"
-          style={{ color: isFocused ? "#ad3939" : "black" }}
+          style={
+            drawerProgress == "open" && label === "menu"
+              ? { color: "#ad3939" }
+              : drawerProgress == "closed" && isFocused
+              ? { color: "#ad3939" }
+              : { color: "black" }
+          }
+          // {{
+          //   color: isFocused && drawerProgress != "open" ? "#ad3939" : "black",
+          // }}
         >
           {label}
         </Text>

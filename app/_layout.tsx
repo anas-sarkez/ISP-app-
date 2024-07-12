@@ -9,6 +9,7 @@ import { store } from "./store";
 
 export default function RootLayout() {
   return (
+
     <Provider store={store}>
       <SafeAreaProvider>
         <PaperProvider>
@@ -17,24 +18,29 @@ export default function RootLayout() {
           >
             <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
-            <Stack.Screen
-              name="settings"
-              options={{
-                // presentation: Platform.OS === "ios" ? "modal" : "card",
-                headerStyle: {
-                  backgroundColor: "#f2f2f2",
-                },
-                animation: "slide_from_right",
+              <Stack.Screen
+            name="settings"
+            options={{
+              headerShown: false,
+              // presentation: Platform.OS === "ios" ? "modal" : "card",
+              headerStyle: {
+                backgroundColor: "#f2f2f2",
+              },
+              animation: "slide_from_bottom",
 
-                headerBackTitle: "Back",
+              headerBackTitle: "Back",
 
-                headerTitleStyle: {
-                  color: "#C0091E",
-                  fontWeight: "bold",
-                  fontSize: 20,
-                },
-              }}
-            />
+              headerTitleStyle: {
+                color: "#C0091E",
+                fontWeight: "bold",
+                fontSize: 20,
+              },
+            }}
+          />
+          <Stack.Screen
+            name="profile"
+            options={{ headerShown: false, animation: "slide_from_bottom" }}
+          />
 
             <Stack.Screen
               name="TopUp"

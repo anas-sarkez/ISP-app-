@@ -4,5 +4,5 @@ import { Redirect } from "expo-router";
 
 export default function Index() {
   return <Login />;
-  // return Redirect({ href: "/data" });
+  return Redirect({ href: "/settings" });
 }
