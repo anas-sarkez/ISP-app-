@@ -15,11 +15,12 @@ export default function RootLayout() {
           <Stack.Screen
             name="settings"
             options={{
+              headerShown: false,
               // presentation: Platform.OS === "ios" ? "modal" : "card",
               headerStyle: {
                 backgroundColor: "#f2f2f2",
               },
-              animation: "slide_from_right",
+              animation: "slide_from_bottom",
 
               headerBackTitle: "Back",
 
@@ -29,6 +30,10 @@ export default function RootLayout() {
                 fontSize: 20,
               },
             }}
+          />
+          <Stack.Screen
+            name="profile"
+            options={{ headerShown: false, animation: "slide_from_bottom" }}
           />
 
           <Stack.Screen

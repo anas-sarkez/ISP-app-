@@ -5,8 +5,10 @@ import LogoTitle from "../../Components/LogoTitle";
 import { Icon } from "react-native-paper";
 import DrawerViewWrapper from "@/app/Components/DrawerViewWrapper";
 import AnimatedTabBar from "@/app/Components/AnimatedTabBar";
+// import { useDrawerStatus } from "@react-navigation/drawer";
 
 const _layout = () => {
+  // const progress = useDrawerStatus();
   return (
     <DrawerViewWrapper>
       <Tabs
@@ -30,6 +32,7 @@ const _layout = () => {
             tabPress: (e) => {
               e.preventDefault();
               navigation.openDrawer();
+              // console.log(progress);
             },
           })}
         />

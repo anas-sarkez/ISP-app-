@@ -86,7 +86,7 @@ const Login = () => {
     if (isBiometricSupported) authenticateUser();
   }, [isBiometricSupported]);
   return (
-    <View className="bg-white h-[98%]">
+    <View className="bg-white h-[98%] ">
       <StatusBar barStyle={"dark-content"}></StatusBar>
       <SafeAreaView
         mode="margin"
