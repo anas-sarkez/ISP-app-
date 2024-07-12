@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { View, Text, Alert, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Alert,
+  StyleSheet,
+  ScrollView,
+  Platform,
+} from "react-native";
 import { List, TextInput, Button, Icon } from "react-native-paper";
 import { packege } from "./helpers/packege";
 import { confirm } from "./helpers/confirm";
@@ -17,7 +24,7 @@ export default function Modal() {
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldShowAlert: true,
-      shouldPlaySound: false,
+      shouldPlaySound: true,
       shouldSetBadge: false,
     }),
   });
@@ -26,12 +33,11 @@ export default function Modal() {
       <View className="items-center  mb-9 justify-center">
         <View className="w-[95%] border-b-2 items-start justify-center flex-row  bg-[#ffffff] border-[#1D1D2E]">
           <Text className="text-[20px] py-[3%] text-center  font-bold text-[#1D1D2E]">
-            Please Enter Your Card Number
+            تعبئة الرصيد
           </Text>
         </View>
         <View className="w-[90%] py-[5%]">
           <TextInput
-            mode="outlined"
             label="  Card Number"
             value={cardNo.toString()}
             onChange={(e) => {
@@ -39,19 +45,19 @@ export default function Modal() {
               if (e.nativeEvent.text.length == 8) setCheckCard(true);
               else setCheckCard(false);
             }}
+            mode="outlined"
+            className="bg-white my-6"
+            activeOutlineColor="#C0091E"
+            outlineStyle={{
+              borderRadius: 20,
+            }}
+            outlineColor="#C4C4C4"
+            placeholderTextColor="#C4C4C4"
+            textColor="#0F0017"
+            autoCapitalize="none"
             keyboardType="numeric"
             placeholder=" 1234 5678 9012 3456"
-            activeOutlineColor="#C0091E"
-            outlineColor="#C4C4C4"
-            activeUnderlineColor="#C0091E"
-            placeholderTextColor="#C4C4C4"
             maxLength={8}
-            textColor="#0F0017"
-            outlineStyle={{
-              borderRadius: 40,
-              backgroundColor: "#fff",
-            }}
-            autoCapitalize="none"
             left={
               <TextInput.Icon icon="sort-numeric-variant" color="#C0091E" />
             }
@@ -59,7 +65,7 @@ export default function Modal() {
         </View>
         <View className="w-full justify-center items-center mt-6">
           <Text className="text-[16px] font-black text-[#1D1D2E]">
-            Balance: <Text className="font-medium ">{balance} LYD</Text>
+            الرصيد الحالي: <Text className="font-medium ">{balance} دينار</Text>
           </Text>
         </View>
         <View className="w-[100%] py-6  flex-row justify-around">
@@ -81,12 +87,15 @@ export default function Modal() {
                 "Confirm",
                 "Do you want to proceed?"
               );
+              if (!shouldContinue) return;
 
               if (cardNo == "12345678" && shouldContinue) {
                 await Notifications.scheduleNotificationAsync({
                   content: {
                     title: "Sela",
-                    body: "You have added 10 LYD",
+                    body: "You have added 10 LYD 💰",
+
+                    sound: Platform.OS === "android" ? undefined : "default",
                   },
                   trigger: {
                     seconds: 1,
@@ -98,23 +107,23 @@ export default function Modal() {
               }
             }}
           >
-            Submit
+            اضافة رصيد
           </Button>
         </View>
         <View className="w-[95%] mt-[5%] border-b-2 bg-[#ffffff] border-[#1D1D2E]">
           <Text className="text-[20px] py-[3%] text-center  font-bold text-[#1D1D2E]">
-            Packages Management
+            إدارة الباقات
           </Text>
         </View>
         <View className="w-full flex-row justify-center items-center mt-[6%]">
           <View className="w-[75%]  justify-between items-center">
             <Text className="text-[16px] font-bold text-[#1D1D2E]">
-              Package:{" "}
+              الباقة:{" "}
               <Text className="font-semibold ">
                 {selectedPackage.name},
                 <Text className={valid ? "text-green-500" : "text-red-500"}>
                   {" "}
-                  {valid ? "Valid" : "Expired"}
+                  {valid ? "صالحة" : "منتهية"}
                 </Text>
               </Text>
             </Text>
@@ -165,28 +174,28 @@ export default function Modal() {
                 }
               }}
             >
-              Renew
+              تجديد الباقة الحالية
             </Button>
           </View>
         </View>
         <View className="w-full justify-center pt-[3%] items-center">
           <View className="w-[90%] py-3">
-            <Text className="text-[14px] text-left font-medium text-[#C0091E]">
-              Change Package
+            <Text className="text-[14px] text-right font-medium text-[#C0091E]">
+              تغيير الباقة
             </Text>
           </View>
 
           <View className="w-[90%] py-3">
             <View className="w-full">
               <List.Accordion
-                title="Limited Packages"
+                title="الباقات المحدودة"
                 style={{
                   backgroundColor: "#fff",
                   borderBottomWidth: 1,
                   borderColor: "#C0091E",
                   width: "100%",
                 }}
-                titleStyle={{ color: "#1D1D2E" }}
+                titleStyle={{ color: "#1D1D2E", textAlign: "right" }}
                 left={(props) => (
                   <List.Icon
                     {...props}
@@ -289,13 +298,13 @@ export default function Modal() {
               </List.Accordion>
             </View>
             <List.Accordion
-              title="Unlimited Packages"
+              title="الباقات الغير محدودة"
               style={{
                 backgroundColor: "#fff",
                 borderBottomWidth: 1,
                 borderColor: "#C0091E",
               }}
-              titleStyle={{ color: "#1D1D2E" }}
+              titleStyle={{ color: "#1D1D2E", textAlign: "right" }}
               left={(props) => (
                 <List.Icon {...props} icon="infinity" color="#C0091E" />
               )}
