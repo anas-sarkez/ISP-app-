@@ -37,7 +37,7 @@ function InfiniteSlider() {
       autoPlay={true}
       data={fetchedImages}
       scrollAnimationDuration={1000}
-      onSnapToItem={(index) => console.log("current index:", index)}
+      // onSnapToItem={(index) => console.log("current index:", index)}
       renderItem={({ item }) => (
         <View className="h-full aspect-video p-2" key={item.id}>
           <Image

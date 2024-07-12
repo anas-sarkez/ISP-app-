@@ -6,35 +6,32 @@ import { LinearGradient } from "expo-linear-gradient";
 const Dashboard = () => {
   return (
     <View className="w-[100%] h-[100%] pb-[25%] bg-[#ebeaea] justify-center items-center">
-      {/* <LinearGradient
-        colors={["#C0091E", "#69252e", "#000"]}
+      <LinearGradient
+        colors={["#C0091E", "#69252e"]}
         style={{
           position: "absolute",
           left: -85,
           borderWidth: 0,
-          borderCurve: "circular",
-          borderTopRightRadius: 400,
-          borderTopLeftRadius: 400,
           width: "140%",
           right: 0,
-          bottom: -40,
-          height: 140,
+          top: 0,
+          height: "27.5%",
         }}
-      /> */}
+      />
       <View className="flex-row  w-[80%] mt-[15%] items-center justify-between">
-        <Text className="text-[20px] font-bold text-[#6b6b6b]">
-          <Text className="font-black text-[18px] text-[#505050]">Name:</Text>{" "}
+        <Text className="text-[20px] font-bold text-[#ffffff]">
+          <Text className="font-black text-[18px] text-[#ffffff]">Name:</Text>{" "}
           Anas Sarkiz
         </Text>
         <Text className="text-[20px] font-bold text-[#329737]">
-          <Text className="font-black text-[18px] text-[#505050] ">
+          <Text className="font-black text-[18px] text-[#fffefe] ">
             Status:
           </Text>
           Active
         </Text>
       </View>
-      <View className="w-[94%] mt-[5%] h-[65%]  rounded-3xl overflow-hidden   justify-center items-center">
-        <View className=" h-[13%] w-full bg-[#ad3939]  justify-around items-center flex-row">
+      <View className="w-[100%] mt-[5%] h-[65%]  rounded-3xl overflow-hidden   justify-center items-center">
+        <View className=" h-[13%] w-full bg-transparent  justify-around items-center flex-row">
           <Text className="text-white text-start ml-3 text-[30px] font-bold">
             Your Internet Usage
           </Text>
@@ -118,7 +115,7 @@ const Dashboard = () => {
         labelStyle={{ color: "white", width: "auto" }}
         icon="database-cog-outline"
         mode="contained"
-        className="bg-[#ad3939] text-white mt-[10%] w-[60%] rounded-3xl"
+        className="bg-[#a02626] text-white mt-[10%] w-[60%] rounded-3xl"
         onPress={() => router.push("/modal")}
       >
         Data Plan

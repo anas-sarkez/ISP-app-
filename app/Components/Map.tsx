@@ -196,7 +196,7 @@ export default function Map() {
         </Button>
       </View>
       {pending === "failed" && (
-        <View className="absolute bottom-[2.5%] mb-20 right-2 w-full items-end">
+        <View className="absolute bottom-[3%] mb-20 right-2 w-full items-end">
           <Button
             className="bg-[#7c1e1e] rounded-full"
             mode="contained"
@@ -227,7 +227,7 @@ export default function Map() {
               getLocation();
             }}
           >
-            <Icon size={20} source="refresh" color="white"></Icon>
+            <Icon size={20} source="map-marker-radius" color="white"></Icon>
           </Button>
         </View>
       )}
