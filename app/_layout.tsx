@@ -37,15 +37,10 @@ export default function RootLayout() {
             />
 
             <Stack.Screen
-              name="topup"
+              name="TopUp"
               options={{
-                presentation: Platform.OS === "ios" ? "modal" : "card",
-                headerStyle: {
-                  backgroundColor: "#f2f2f2",
-                },
-                animation: "slide_from_right",
-
-                headerBackTitle: "Back",
+                presentation: "modal",
+                headerShown: false,
               }}
             />
 

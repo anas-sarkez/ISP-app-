@@ -33,7 +33,7 @@ const Home = () => {
         background-size: 3em 3em;
         background-color: #ffffff;
         opacity: 1 */}
-      <View className="w-fill h-[100%] items-center bg-white justify-center">
+      <View className="w-fill h-[100%] items-center bg-[#f2f2f2] justify-center">
         <LinearGradient
           colors={["#000", "#69252e", "#C0091E"]}
           style={{
@@ -49,21 +49,7 @@ const Home = () => {
             height: "40%",
           }}
         />
-        <LinearGradient
-          colors={["#C0091E", "#69252e", "#000"]}
-          style={{
-            position: "absolute",
-            left: -85,
-            borderWidth: 0,
-            borderCurve: "circular",
-            borderTopRightRadius: 400,
-            borderTopLeftRadius: 400,
-            width: "140%",
-            right: 0,
-            bottom: -40,
-            height: 140,
-          }}
-        />
+
         <View className="h-[80%] w-full  justify-start items-center ">
           <View className=" w-[90%]  flex-row  -translate-x-8 justify-evenly items-center ">
             <Icon source="card-account-details" size={45} color="#fff" />
@@ -71,7 +57,7 @@ const Home = () => {
               style={styles.box}
               className=" text-2xl font-semibold  py-1 text-white  "
             >
-              NotAnas
+              Anas
             </Text>
           </View>
 
@@ -88,12 +74,12 @@ const Home = () => {
                   alignItems: "center",
                   marginTop: "-33%",
                 }}
-                fill={50}
+                fill={55}
                 tintColor="#C0091E"
                 rotation={-180}
-                dashedBackground={{ gap: 0, width: 0 }}
+                dashedBackground={{ gap: 2, width: 2 }}
                 dashedTint={{ gap: 2, width: 2 }}
-                backgroundColor="#fff"
+                backgroundColor="#f2f2f2"
                 lineCap="butt"
                 duration={2700}
                 easing={Easing.inOut(Easing.ease)}
@@ -120,6 +106,17 @@ const Home = () => {
           <View className="w-full aspect-video">
             <InfiniteSlider />
           </View>
+          <Button
+            mode="contained"
+            labelStyle={{ color: "white" }}
+            icon={"plus-circle"}
+            className="w-[60%] my-4 bg-[#922a2a] text-white"
+            onPress={() => {
+              router.push("/TopUp");
+            }}
+          >
+            Top Up
+          </Button>
         </View>
       </View>
       {/* </ImageBackground> */}
