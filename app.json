@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Sela",
-    "slug": "Sela",
+    "slug": "sela",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon-new.png",
@@ -61,8 +61,9 @@
         "origin": false
       },
       "eas": {
-        "projectId": "a94f6fd6-0002-4ea0-a2d2-2abbddee06f2"
+        "projectId": "0a56489f-8383-4ebb-be5c-1454bcfb4e07"
       }
-    }
+    },
+    "owner": "anassarkiz"
   }
 }
