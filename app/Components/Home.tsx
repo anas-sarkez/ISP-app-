@@ -1,24 +1,20 @@
 import { useRouter } from "expo-router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDrawerProgress } from "@react-navigation/drawer";
-import {
-  Platform,
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  ImageBackground,
-  StatusBar,
-} from "react-native";
+import { Platform, View, Text, StyleSheet, StatusBar } from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { Avatar, Button, Icon } from "react-native-paper";
 import { Easing } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 import InfiniteSlider from "./InfiniteSlider";
+import Modal from "./TopUpModal";
+import TopUpcontent from "./TopUpcontent";
 const Home = () => {
   const progress = useDrawerProgress();
+  const [balance, setBalance] = useState(5);
   const statusbar = () => StatusBar.setBarStyle("light-content", true);
   const router = useRouter();
+  const [ModalOpen, setModalOpen] = useState(false);
 
   return (
     <View className=" w-full h-[100%]">
@@ -96,27 +92,52 @@ const Home = () => {
           <View className="w-full flex-row text-center justify-center mt-[8%] items-center ">
             <Text className="text-[24px] mr-2 font-bold text-[#331919]">
               Balance:{" "}
-              <Text className="text-[22px] font-semibold ">10.000 LYD </Text>
+              <Text className="text-[22px] font-semibold ">{balance} LYD </Text>
             </Text>
             <Icon source="account-cash" size={25} color="#7c1e1e" />
           </View>
+          <Button
+            mode="contained"
+            labelStyle={{ color: "white" }}
+            icon={"plus-circle"}
+            className="w-[50%] my-4 bg-[#922a2a] text-white"
+            onPress={() => {
+              setModalOpen(true);
+            }}
+          >
+            Top Up
+          </Button>
           {/* <Text className="text-[16px] mt-4 font-bold text-[#1D1D2E]">
             Sela Announcement
           </Text> */}
           <View className="w-full aspect-video">
             <InfiniteSlider />
           </View>
-          <Button
+          {/* <Button
             mode="contained"
             labelStyle={{ color: "white" }}
             icon={"plus-circle"}
             className="w-[60%] my-4 bg-[#922a2a] text-white"
             onPress={() => {
-              router.push("/TopUp");
+              router.push("/topup");
             }}
           >
             Top Up
-          </Button>
+
+          </Button> */}
+
+          <Modal
+            setModalOpen={setModalOpen}
+            inOpen={ModalOpen}
+            withInput={true}
+          >
+            <TopUpcontent
+              modalOpen={ModalOpen}
+              balance={balance}
+              setBalance={setBalance}
+              setModalOpen={setModalOpen}
+            />
+          </Modal>
         </View>
       </View>
       {/* </ImageBackground> */}

@@ -9,7 +9,6 @@ import { store } from "./store";
 
 export default function RootLayout() {
   return (
-
     <Provider store={store}>
       <SafeAreaProvider>
         <PaperProvider>
@@ -18,36 +17,28 @@ export default function RootLayout() {
           >
             <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
-              <Stack.Screen
-            name="settings"
-            options={{
-              headerShown: false,
-              // presentation: Platform.OS === "ios" ? "modal" : "card",
-              headerStyle: {
-                backgroundColor: "#f2f2f2",
-              },
-              animation: "slide_from_bottom",
-
-              headerBackTitle: "Back",
-
-              headerTitleStyle: {
-                color: "#C0091E",
-                fontWeight: "bold",
-                fontSize: 20,
-              },
-            }}
-          />
-          <Stack.Screen
-            name="profile"
-            options={{ headerShown: false, animation: "slide_from_bottom" }}
-          />
-
             <Stack.Screen
-              name="TopUp"
+              name="settings"
               options={{
-                presentation: "modal",
-                headerShown: false,
+                headerShown: true,
+                // presentation: Platform.OS === "ios" ? "modal" : "card",
+
+                animation: "slide_from_bottom",
+                headerTitle: "Settings",
+                headerBackVisible: false,
+                headerLargeTitle: true,
+                headerLargeStyle: {
+                  backgroundColor: "slategray",
+                },
+                headerLargeTitleStyle: {
+                  color: "#fff",
+                  fontWeight: "bold",
+                },
               }}
+            />
+            <Stack.Screen
+              name="profile"
+              options={{ headerShown: false, animation: "slide_from_bottom" }}
             />
 
             <Stack.Screen

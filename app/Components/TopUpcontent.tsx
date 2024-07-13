@@ -1,21 +1,22 @@
-import { useState } from "react";
 import { View, Text, Alert, Platform } from "react-native";
-import { List, TextInput, Button, Icon, IconButton } from "react-native-paper";
-import { packege } from "./helpers/packege";
-import { confirm } from "./helpers/confirm";
-import * as Notifications from "expo-notifications";
+import React, { useState } from "react";
+import { Button, IconButton, TextInput } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
-import { router } from "expo-router";
-
-const TopUp = () => {
-  const [text, setText] = useState("");
-  // const [expanded, setExpanded] = useState(true);
-  const [selectedPackage, setSelectedPackage] = useState(packege.limited[1]);
-  // const handlePress = () => setExpanded(!expanded);
+import * as Notifications from "expo-notifications";
+import { confirm } from "../helpers/confirm";
+const TopUpContent = ({
+  modalOpen,
+  setModalOpen,
+  balance,
+  setBalance,
+}: {
+  modalOpen: boolean;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  balance: number;
+  setBalance: React.Dispatch<React.SetStateAction<number>>;
+}) => {
   const [checkCard, setCheckCard] = useState(true);
-  const [balance, setBalance] = useState(0);
   const [cardNo, setCardNo] = useState("");
-  const [valid, setValid] = useState(false);
 
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -25,33 +26,24 @@ const TopUp = () => {
     }),
   });
   return (
-    <View className="w-full h-[100%] bg-[#f2f2f2]">
-      <LinearGradient
-        colors={["#C0091E", "#69252e"]}
-        className="rounded-t-3xl"
-        style={{
-          position: "absolute",
-          borderWidth: 0,
-
-          width: "100%",
-          right: 0,
-          bottom: 0,
-          height: "80%",
-        }}
-      />
-      <View className="items-center h-[20%] justify-center">
-        <IconButton
-          className="absolute top-5 left-5"
-          icon="arrow-left"
-          iconColor="#000"
-          size={30}
-          onPress={() => {
-            router.back();
-          }}
+    <View className="w-[85%] h-[35%]  relative overflow-hidden rounded-3xl justify-center items-center  bg-white">
+      <View className="w-full h-[20%] overflow-hidden rounded-t-2xl ">
+        <LinearGradient
+          colors={["#69252e", "#C0091E"]}
+          className=" w-full h-[100%] overflow-hidden rounded-t-2xl "
         />
-        <Text className="text-[20px] font-bold text-[#1D1D2E]">Top Up</Text>
+        <IconButton
+          icon="close-circle"
+          iconColor="#fff"
+          size={30}
+          className="absolute top-1 left-2"
+          onPress={() => setModalOpen(false)}
+        />
+        <Text className="text-[20px]  absolute top-1/3 left-[40%]  font-bold text-[#fff]">
+          Top Up
+        </Text>
       </View>
-      <View className="w-[100%] h-[80%] items-center justify-center ">
+      <View className="w-[100%] h-[80%] bg-[#f2f2f2] items-center justify-center">
         <TextInput
           label="  Card Number"
           value={cardNo}
@@ -74,11 +66,9 @@ const TopUp = () => {
           maxLength={8}
           left={<TextInput.Icon icon="sort-numeric-variant" color="#C0091E" />}
         />
-
         <Text className="text-[16px] text-center font-black text-[#1D1D2E]">
-          الرصيد الحالي: <Text className="font-medium ">{balance} دينار</Text>
+          Current Balance: <Text className="font-medium ">{balance} LYD</Text>
         </Text>
-
         <View className="w-[100%] py-6  flex-row justify-around">
           <Button
             mode="contained"
@@ -111,12 +101,13 @@ const TopUp = () => {
                   },
                 });
                 setBalance((prevBalance) => prevBalance + 10);
+                setCardNo("");
               } else {
                 Alert.alert("Error", "Invalid Card Number");
               }
             }}
           >
-            اضافة رصيد
+            Top Up
           </Button>
         </View>
       </View>
@@ -124,4 +115,4 @@ const TopUp = () => {
   );
 };
 
-export default TopUp;
+export default TopUpContent;

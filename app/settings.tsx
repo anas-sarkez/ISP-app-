@@ -4,16 +4,20 @@ import {
   TouchableHighlight,
   TouchableNativeFeedback,
   Pressable,
+  TouchableOpacity,
 } from "react-native";
 
-import React from "react";
+import React, { useState } from "react";
 import { Button, Icon, IconButton, List } from "react-native-paper";
 import { router } from "expo-router";
+import ThemeSettingsContent from "./Components/ThemeSettingsContent";
+import Modal from "./Components/ThemeSettingsModal";
 // import {  } from "react-native-paper";
 
 const settings = () => {
+  const [modalOpen, setModalOpen] = useState(false);
   return (
-    <View className=" h-full items-center justify-center bg-[#f2f2f2]">
+    <View className=" h-full items-center justify-start  bg-[#d7d7d7]">
       <IconButton
         onPress={() => router.push("home")}
         size={25}
@@ -22,25 +26,28 @@ const settings = () => {
         className=" absolute top-[5%] left-[1%]"
       ></IconButton>
 
-      <View className="w-full h-[70%] mt-[15%]">
-        <List.Accordion
-          title="Limited Packages"
-          rippleColor={"#f2f2f23b"}
-          style={{
-            backgroundColor: "#fff",
-            borderBottomWidth: 1,
-            borderColor: "#C0091E",
-            width: "100%",
-          }}
-          titleStyle={{ color: "#1D1D2E" }}
-          left={(props) => (
-            <List.Icon {...props} icon="car-speed-limiter" color="#C0091E" />
-          )}
+      <View className="w-full h-[13%] mt-[45%] ">
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => setModalOpen(true)}
+          className="w-full h-[85%]  bg-[#313131] justify-around items-center flex-row"
         >
-          <View>
-            <Text>goes here</Text>
-          </View>
-        </List.Accordion>
+          <Text className="text-[20px]  font-bold text-[#fff]">
+            Theme Settings
+          </Text>
+          <Icon size={25} source="theme-light-dark" color="#fff"></Icon>
+        </TouchableOpacity>
+        <Modal
+          onDismiss={() => setModalOpen(false)}
+          inOpen={modalOpen}
+          withInput={true}
+          setModalOpen={setModalOpen}
+        >
+          <ThemeSettingsContent
+            modalOpen={modalOpen}
+            setModalOpen={setModalOpen}
+          />
+        </Modal>
       </View>
     </View>
   );

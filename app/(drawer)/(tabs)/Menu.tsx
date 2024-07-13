@@ -1,3 +1,5 @@
-const menu = () => null;
+const Menu = () => {
+  return null;
+};
 
-export default menu;
+export default Menu;
