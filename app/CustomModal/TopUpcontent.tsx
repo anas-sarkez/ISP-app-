@@ -26,26 +26,26 @@ const TopUpContent = ({
     }),
   });
   return (
-    <View className="w-[85%] h-[35%]  relative overflow-hidden rounded-3xl justify-center items-center  bg-white">
+    <View
+      onStartShouldSetResponder={(event) => true}
+      onTouchEnd={(e) => {
+        e.stopPropagation();
+      }}
+      className="w-[85%] h-[35%]  relative overflow-hidden rounded-3xl justify-center items-center  bg-white"
+    >
       <View className="w-full h-[20%] overflow-hidden rounded-t-2xl ">
         <LinearGradient
           colors={["#69252e", "#C0091E"]}
           className=" w-full h-[100%] overflow-hidden rounded-t-2xl "
         />
-        <IconButton
-          icon="close-circle"
-          iconColor="#fff"
-          size={30}
-          className="absolute top-1 left-2"
-          onPress={() => setModalOpen(false)}
-        />
+
         <Text className="text-[20px]  absolute top-1/3 left-[40%]  font-bold text-[#fff]">
           Top Up
         </Text>
       </View>
       <View className="w-[100%] h-[80%] bg-[#f2f2f2] items-center justify-center">
         <TextInput
-          label="  Card Number"
+          label="Card Number"
           value={cardNo}
           onChangeText={(text) => {
             setCardNo(text);

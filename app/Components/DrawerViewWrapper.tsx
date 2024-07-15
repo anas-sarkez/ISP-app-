@@ -34,12 +34,12 @@ const DrawerViewWrapper = ({ children }: { children: any }) => {
       scale: number;
       translateX: number;
     },
-    borderRadius: interpolate(progress.value, [0, 1], [0, 15]),
+    borderRadius: interpolate(progress.value, [0, 1], [0, 40]),
   }));
   return (
     <Animated.View
       className={"overflow-hidden"}
-      style={[styles.container, animatedStyle, styles.box]}
+      style={[styles.container, animatedStyle]}
     >
       {children}
     </Animated.View>

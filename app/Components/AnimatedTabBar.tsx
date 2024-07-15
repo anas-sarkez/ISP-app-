@@ -176,26 +176,26 @@ const TabBarComponent = ({
       >
         {label === "menu" ? (
           <Icon
-            color={drawerProgress == "open" ? "#ad3939" : "black"}
+            color={drawerProgress == "open" ? "#b00909" : "black"}
             source="menu"
             size={30}
             // color={`${isDrawerOpen ? "#C0091E" : "#C4C4C4"}`}
           />
         ) : label === "home" ? (
           <Icon
-            color={isFocused && drawerProgress != "open" ? "#ad3939" : "#000"}
+            color={isFocused && drawerProgress != "open" ? "#b00909" : "#000"}
             source="home"
             size={30}
           />
         ) : label === "map" ? (
           <Icon
-            color={isFocused && drawerProgress != "open" ? "#ad3939" : "#000"}
+            color={isFocused && drawerProgress != "open" ? "#b00909" : "#000"}
             source="transmission-tower"
             size={30}
           />
         ) : label === "dashboard" ? (
           <Icon
-            color={isFocused && drawerProgress != "open" ? "#ad3939" : "#000"}
+            color={isFocused && drawerProgress != "open" ? "#b00909" : "#000"}
             source="chart-bar"
             size={30}
           />
@@ -204,13 +204,13 @@ const TabBarComponent = ({
           className="text-[10px]"
           style={
             drawerProgress == "open" && label === "menu"
-              ? { color: "#ad3939" }
+              ? { color: "#b00909" }
               : drawerProgress == "closed" && isFocused
-              ? { color: "#ad3939" }
+              ? { color: "#b00909" }
               : { color: "black" }
           }
           // {{
-          //   color: isFocused && drawerProgress != "open" ? "#ad3939" : "black",
+          //   color: isFocused && drawerProgress != "open" ? "#b00909" : "black",
           // }}
         >
           {label}

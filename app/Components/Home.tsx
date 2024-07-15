@@ -7,13 +7,12 @@ import { Avatar, Button, Icon } from "react-native-paper";
 import { Easing } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 import InfiniteSlider from "./InfiniteSlider";
-import Modal from "./TopUpModal";
-import TopUpcontent from "./TopUpcontent";
+import Modal from "../CustomModal/TopUpModal";
+import TopUpcontent from "../CustomModal/TopUpcontent";
 const Home = () => {
   const progress = useDrawerProgress();
   const [balance, setBalance] = useState(5);
   const statusbar = () => StatusBar.setBarStyle("light-content", true);
-  const router = useRouter();
   const [ModalOpen, setModalOpen] = useState(false);
 
   return (
@@ -31,7 +30,7 @@ const Home = () => {
         opacity: 1 */}
       <View className="w-fill h-[100%] items-center bg-[#f2f2f2] justify-center">
         <LinearGradient
-          colors={["#000", "#69252e", "#C0091E"]}
+          colors={["#C0091E", "#69252e"]}
           style={{
             position: "absolute",
             left: -85,
@@ -42,7 +41,8 @@ const Home = () => {
             width: "140%",
             right: 0,
             top: -30,
-            height: "40%",
+            height: "43%",
+            ...styles.box,
           }}
         />
 
@@ -59,7 +59,7 @@ const Home = () => {
 
           <View className=" justify-center items-center mt-[10%] ">
             <View
-              style={(styles.box, [{ elevation: 30 }])}
+              style={Platform.OS === "ios" ? styles.box : { elevation: 10 }}
               className="bg-[#fff] w-[250px]  h-[250px] rounded-full justify-center items-center  "
             >
               <AnimatedCircularProgress
@@ -70,12 +70,12 @@ const Home = () => {
                   alignItems: "center",
                   marginTop: "-33%",
                 }}
-                fill={55}
-                tintColor="#C0091E"
+                fill={24}
+                tintColor="#c0091e"
                 rotation={-180}
                 dashedBackground={{ gap: 2, width: 2 }}
                 dashedTint={{ gap: 2, width: 2 }}
-                backgroundColor="#f2f2f2"
+                backgroundColor="#e2e2e2"
                 lineCap="butt"
                 duration={2700}
                 easing={Easing.inOut(Easing.ease)}
@@ -94,16 +94,17 @@ const Home = () => {
               Balance:{" "}
               <Text className="text-[22px] font-semibold ">{balance} LYD </Text>
             </Text>
-            <Icon source="account-cash" size={25} color="#7c1e1e" />
+            <Icon source="account-cash" size={25} color="#b00909" />
           </View>
           <Button
             mode="contained"
             labelStyle={{ color: "white" }}
             icon={"plus-circle"}
-            className="w-[50%] my-4 bg-[#922a2a] text-white"
+            className="w-[40%] my-4 bg-[#ba0f23] text-white"
             onPress={() => {
               setModalOpen(true);
             }}
+            style={styles.box}
           >
             Top Up
           </Button>
@@ -150,11 +151,11 @@ export default Home;
 const styles = StyleSheet.create({
   box: {
     shadowColor: "rgba(0, 0, 0, 1)",
-    shadowOpacity: 0.85,
-    shadowRadius: 5,
+    shadowOpacity: 0.6,
+    shadowRadius: 1,
     shadowOffset: {
-      height: 3,
-      width: 2,
+      height: 1.8,
+      width: 1,
     },
   },
 });

@@ -1,9 +1,13 @@
 import { View, Text, ImageBackground, StyleSheet } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Button, Icon } from "react-native-paper";
 import { router } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
+import PModal from "../CustomModal/PackageModal";
+import PackageContent from "../CustomModal/PackageContent";
+
 const Dashboard = () => {
+  const [ModalOpen, setModalOpen] = useState(false);
   return (
     <View className="w-[100%] h-[100%] pb-[25%] bg-[#ebeaea] justify-center items-center">
       <LinearGradient
@@ -37,6 +41,9 @@ const Dashboard = () => {
           </Text>
           <Icon size={35} source="wifi-sync" color="#fff"></Icon>
         </View>
+        <PModal inOpen={ModalOpen} setModalOpen={setModalOpen}>
+          <PackageContent />
+        </PModal>
         <View className=" h-[87%] w-[100%]  bg-[#fffcfc] justify-center items-center">
           <View className="h-[35%] w-full items-center justify-center flex-row ">
             <View
@@ -56,7 +63,7 @@ const Dashboard = () => {
                 </Text>
               </View>
               <View className="w-[20%] absolute top-[23%] right-[8%] items-center">
-                <Icon size={35} source="chart-line" color="#ad3939"></Icon>
+                <Icon size={35} source="chart-line" color="#b00909"></Icon>
               </View>
             </View>
             <View
@@ -76,7 +83,7 @@ const Dashboard = () => {
                 </Text>
               </View>
               <View className="w-[20%] absolute top-[23%] right-[8%] items-center">
-                <Icon size={35} source="chart-donut" color="#ad3939"></Icon>
+                <Icon size={35} source="chart-donut" color="#b00909"></Icon>
               </View>
             </View>
           </View>
@@ -91,7 +98,7 @@ const Dashboard = () => {
               12/12/2024
             </Text>
             <View className="absolute top-[25%] right-[5%] items-center">
-              <Icon size={45} source="calendar" color="#ad3939"></Icon>
+              <Icon size={45} source="calendar" color="#b00909"></Icon>
             </View>
           </View>
           <View className="font-bold  shadow-2xl h-[25%]  rounded-2xl bg-[#e2e2e2] w-[90%]  m-[8]">
@@ -105,7 +112,7 @@ const Dashboard = () => {
               Limited 1
             </Text>
             <View className="absolute top-[30%] right-[5%] items-center">
-              <Icon size={45} source="package-variant" color="#ad3939"></Icon>
+              <Icon size={45} source="package-variant" color="#b00909"></Icon>
             </View>
           </View>
         </View>
@@ -115,8 +122,8 @@ const Dashboard = () => {
         labelStyle={{ color: "white", width: "auto" }}
         icon="database-cog-outline"
         mode="contained"
-        className="bg-[#a02626] text-white mt-[10%] w-[60%] rounded-3xl"
-        onPress={() => router.push("/modal")}
+        className="bg-[#b00909] text-white mt-[10%] w-[60%] rounded-3xl"
+        onPress={() => setModalOpen(true)}
       >
         Data Plan
       </Button>

@@ -12,7 +12,9 @@ const _layout = () => {
   return (
     <DrawerViewWrapper>
       <Tabs
-        sceneContainerStyle={{ backgroundColor: "transparent" }}
+        sceneContainerStyle={{
+          backgroundColor: "transparent",
+        }}
         screenOptions={{
           tabBarActiveTintColor: "#C0091E",
           tabBarInactiveTintColor: "#C4C4C4",

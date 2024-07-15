@@ -74,7 +74,7 @@ export default function Map() {
               longitude: 12.7278,
             }}
           >
-            <Icon size={40} source="radio-tower" color="#7c1e1e"></Icon>
+            <Icon size={40} source="transmission-tower" color="#b00909"></Icon>
           </Marker>
         )}
         {to === "towers" && (
@@ -86,7 +86,7 @@ export default function Map() {
               longitude: 12.6278,
             }}
           >
-            <Icon size={40} source="radio-tower" color="#7c1e1e"></Icon>
+            <Icon size={40} source="transmission-tower" color="#b00909"></Icon>
           </Marker>
         )}
         {to === "towers" && (
@@ -97,7 +97,7 @@ export default function Map() {
               longitude: 12.8278,
             }}
           >
-            <Icon size={40} source="radio-tower" color="#7c1e1e"></Icon>
+            <Icon size={40} source="transmission-tower" color="#b00909"></Icon>
           </Marker>
         )}
         {to === "towers" && (
@@ -108,7 +108,7 @@ export default function Map() {
               longitude: 12.9978,
             }}
           >
-            <Icon size={40} source="radio-tower" color="#7c1e1e"></Icon>
+            <Icon size={40} source="transmission-tower" color="#b00909"></Icon>
           </Marker>
         )}
         {to === "offices" && (
@@ -126,7 +126,7 @@ export default function Map() {
             <Icon
               size={40}
               source="office-building-marker"
-              color="#7c1e1e"
+              color="#b00909"
             ></Icon>
           </Marker>
         )}
@@ -142,7 +142,7 @@ export default function Map() {
               setOffceDescription("office 2");
             }}
           >
-            <Icon size={40} source="store-marker" color="#7c1e1e"></Icon>
+            <Icon size={40} source="store-marker" color="#b00909"></Icon>
           </Marker>
         )}
         {to === "offices" && (
@@ -157,7 +157,7 @@ export default function Map() {
               setOffceDescription("office 3");
             }}
           >
-            <Icon size={40} source="store-marker" color="#7c1e1e"></Icon>
+            <Icon size={40} source="store-marker" color="#b00909"></Icon>
           </Marker>
         )}
         {to === "offices" && (
@@ -172,7 +172,7 @@ export default function Map() {
               setOffceDescription("office 4");
             }}
           >
-            <Icon size={40} source="store-marker" color="#7c1e1e"></Icon>
+            <Icon size={40} source="store-marker" color="#b00909"></Icon>
           </Marker>
         )}
       </MapView>
@@ -184,7 +184,7 @@ export default function Map() {
       <View className="absolute bottom-[7%] mb-20 w-full items-center justify-center">
         <Button
           mode="contained"
-          className="bg-[#7c1e1e] w-[40%] rounded-full "
+          className="bg-[#b00909] w-[40%] rounded-full "
           labelStyle={{ color: "white" }}
           onPress={() => {
             setTo((prev) => {
@@ -198,7 +198,7 @@ export default function Map() {
       {pending === "failed" && (
         <View className="absolute bottom-[3%] mb-20 right-2 w-full items-end">
           <Button
-            className="bg-[#7c1e1e] rounded-full"
+            className="bg-[#b00909] rounded-full"
             mode="contained"
             labelStyle={{ color: "white" }}
             onPress={() => {
@@ -327,7 +327,7 @@ const mapCustomStyle = [
             <Button
               mode="contained"
               labelStyle={{ color: "white" }}
-              className="bg-[#7c1e1e] text-white  w-[35%] rounded-3xl"
+              className="bg-[#b00909] text-white  w-[35%] rounded-3xl"
               onPress={async () => {
                 if (pending == "failed") {
                   Alert.alert(

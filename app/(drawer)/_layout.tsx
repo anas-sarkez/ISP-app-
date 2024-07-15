@@ -21,7 +21,7 @@ const _layout = () => {
             paddingRight: 0,
             margin: 0,
             marginRight: 0,
-            backgroundColor: "#ffefef",
+            backgroundColor: "transparent",
           },
           drawerInactiveBackgroundColor: "transparent",
           drawerActiveBackgroundColor: "transparent",

@@ -10,11 +10,14 @@ import { AnimatedView } from "react-native-reanimated/lib/typescript/reanimated2
 const DrawerContent = (props: any) => {
   return (
     <DrawerContentScrollView
-      contentContainerStyle={{ height: "100%", justifyContent: "center" }}
+      contentContainerStyle={{
+        height: "100%",
+        justifyContent: "center",
+      }}
       {...props}
     >
-      <View className="  h-[90%]  w-[100%]   ">
-        <View className=" w-[100%]   items-center  h-[18%] ">
+      <View className=" ml-3  h-[90%]  w-[100%]   ">
+        <View className=" w-[100%]   items-center  h-[20%] ">
           {/* <Text className="pl-[8%] text-[#1D1D2E] text-xl font-medium mt-[4%]">
             SelaNet
           </Text> */}
@@ -29,9 +32,9 @@ const DrawerContent = (props: any) => {
             size={60}
             label="A"
             color="white"
-            style={{ backgroundColor: "#7c1e1e" }}
+            style={{ backgroundColor: "#ba0f23" }}
           />
-          <Text className="pl-[10%] text-[#1D1D2E] text-xl font-medium">
+          <Text className="pl-[10%] text-[#1D1D2E] text-[22px] font-medium">
             Anas
           </Text>
         </View>
@@ -39,35 +42,47 @@ const DrawerContent = (props: any) => {
           <DrawerItem
             style={{ padding: 0, width: "100%" }}
             icon={({ color, size }) => (
-              <Feather name="user" size={30} color={"#7c1e1e"} />
+              <Feather name="user" size={35} color={"#a90606"} />
             )}
             label={"Profile"}
             onPress={() => {
               router.push("profile");
             }}
-            labelStyle={{ color: "#7c1e1e", fontWeight: "bold" }}
+            labelStyle={{
+              color: "#a90606",
+              fontWeight: "bold",
+              fontSize: 20,
+            }}
           />
           <DrawerItem
             style={{ padding: 0, width: "100%" }}
             icon={({ color, size }) => (
-              <Feather name="settings" size={30} color={"#7c1e1e"} />
+              <Feather name="settings" size={35} color={"#a90606"} />
             )}
             label={"Settings"}
             onPress={() => {
               router.push("settings");
             }}
-            labelStyle={{ color: "#7c1e1e", fontWeight: "bold" }}
+            labelStyle={{
+              color: "#a90606",
+              fontWeight: "bold",
+              fontSize: 20,
+            }}
           />
           <DrawerItem
             style={{ padding: 0, width: "100%" }}
             icon={({ color, size }) => (
-              <Feather name="alert-circle" size={30} color={"#7c1e1e"} />
+              <Feather name="alert-circle" size={35} color={"#a90606"} />
             )}
             label={"About the app"}
             onPress={() => {
               router.push("/(drawer)/(tabs)/Map");
             }}
-            labelStyle={{ color: "#7c1e1e", fontWeight: "bold" }}
+            labelStyle={{
+              color: "#a90606",
+              fontWeight: "bold",
+              fontSize: 20,
+            }}
           />
         </View>
         <View className="w-full h-[15%] items-center ">
@@ -75,7 +90,7 @@ const DrawerContent = (props: any) => {
             labelStyle={{ color: "white" }}
             icon="logout"
             mode="contained"
-            className="bg-[#7c1e1e] text-white mt-[10%] w-[70%] rounded-3xl"
+            className="bg-[#a90606] text-white mt-[10%] w-[70%] rounded-3xl"
             onPress={() => {
               router.push("/");
             }}
