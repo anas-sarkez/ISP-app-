@@ -5,16 +5,24 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { PaperProvider } from "react-native-paper";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import { useState } from "react";
 // SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const [balance, setBalance] = useState(5);
+  const [currentPackage, setCurrentPackage] = useState("Limited3");
+
   return (
     // <Provider store={store}>
     <SafeAreaProvider>
       <PaperProvider>
         <Stack screenOptions={{ contentStyle: { backgroundColor: "#e0e5e0" } }}>
           <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="(drawer)"
+            initialParams={{ balance, setBalance }}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen
             name="settings"
             options={{ headerShown: false, animation: "slide_from_bottom" }}
@@ -23,30 +31,6 @@ export default function RootLayout() {
             name="profile"
             options={{ headerShown: false, animation: "slide_from_bottom" }}
           />
-
-          {/* <Stack.Screen
-              name="modal"
-              options={{
-                presentation: Platform.OS === "ios" ? "modal" : "card",
-                headerStyle: {
-                  backgroundColor: "#fff",
-                },
-                animation:
-                  Platform.OS === "ios"
-                    ? "slide_from_bottom"
-                    : "slide_from_bottom",
-
-                headerBackTitle: Platform.OS === "ios" ? "" : "Cancel",
-                headerTitle: Platform.OS === "ios" ? "" : "Data plan",
-
-                headerTitleStyle: {
-                  color: "#C0091E",
-                  fontWeight: "bold",
-
-                  fontSize: 20,
-                },
-              }}
-            /> */}
         </Stack>
         <StatusBar barStyle={"light-content"} />
       </PaperProvider>

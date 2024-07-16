@@ -1,9 +1,8 @@
-import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { useDrawerProgress } from "@react-navigation/drawer";
 import { Platform, View, Text, StyleSheet, StatusBar } from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
-import { Avatar, Button, Icon } from "react-native-paper";
+import { Button, Icon } from "react-native-paper";
 import { Easing } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 import InfiniteSlider from "./InfiniteSlider";
@@ -18,16 +17,7 @@ const Home = () => {
   return (
     <View className=" w-full h-[100%]">
       <StatusBar barStyle="light-content" />
-      {/* <ImageBackground
-        imageStyle={{ opacity: 1 }}
-        className="w-screen bg-center  overflow-hidden   h-[105%]"
-        source={require("../../assets/images/dashboard1.png")}
-        resizeMode="cover" */}
-      {/* > */}
-      {/* background: linear-gradient(45deg, #e34646 10%,transparent 10%,transparent 90%,#e34646 90%),linear-gradient(135deg, transparent 40%, #e3464680 40%, #e3464680 60%, transparent 0),linear-gradient(45deg, transparent 40%, #e34646 40%, #e34646 60%, transparent 0);
-        background-size: 3em 3em;
-        background-color: #ffffff;
-        opacity: 1 */}
+
       <View className="w-fill h-[100%] items-center bg-[#f2f2f2] justify-center">
         <LinearGradient
           colors={["#C0091E", "#69252e"]}
@@ -108,24 +98,10 @@ const Home = () => {
           >
             Top Up
           </Button>
-          {/* <Text className="text-[16px] mt-4 font-bold text-[#1D1D2E]">
-            Sela Announcement
-          </Text> */}
+
           <View className="w-full aspect-video">
             <InfiniteSlider />
           </View>
-          {/* <Button
-            mode="contained"
-            labelStyle={{ color: "white" }}
-            icon={"plus-circle"}
-            className="w-[60%] my-4 bg-[#922a2a] text-white"
-            onPress={() => {
-              router.push("/topup");
-            }}
-          >
-            Top Up
-
-          </Button> */}
 
           <Modal
             setModalOpen={setModalOpen}
@@ -141,7 +117,6 @@ const Home = () => {
           </Modal>
         </View>
       </View>
-      {/* </ImageBackground> */}
     </View>
   );
 };
