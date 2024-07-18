@@ -35,12 +35,12 @@ const Login = () => {
       return;
     }
   };
-  useEffect(() => {
-    (async () => {
-      const compatible = await localAuthentication.hasHardwareAsync();
-      setIsBiometricSupported(compatible);
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     const compatible = await localAuthentication.hasHardwareAsync();
+  //     setIsBiometricSupported(compatible);
+  //   })();
+  // }, []);
   const authenticateUser = async () => {
     try {
       const authenticationResult = await localAuthentication.authenticateAsync({

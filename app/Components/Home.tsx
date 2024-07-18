@@ -9,6 +9,24 @@ import InfiniteSlider from "./InfiniteSlider";
 import Modal from "../CustomModal/TopUpModal";
 import TopUpcontent from "../CustomModal/TopUpcontent";
 import useStore from "../store/store";
+import { PermissionsAndroid } from "react-native";
+
+async function requestNotificationPermission() {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS
+    );
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      console.log("Notification permission granted");
+      // Handle notifications here
+    } else {
+      console.log("Notification permission denied");
+    }
+  } catch (error) {
+    console.error("Error requesting notification permission:", error);
+  }
+}
+requestNotificationPermission();
 const Home = () => {
   const progress = useDrawerProgress();
 
