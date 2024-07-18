@@ -3,8 +3,6 @@ import { Appearance, Platform } from "react-native";
 import { StatusBar } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { PaperProvider } from "react-native-paper";
-import { Provider } from "react-redux";
-import { store } from "./store";
 import { useState } from "react";
 // SplashScreen.preventAutoHideAsync();
 
@@ -13,10 +11,9 @@ export default function RootLayout() {
   const [currentPackage, setCurrentPackage] = useState("Limited3");
 
   return (
-    // <Provider store={store}>
     <SafeAreaProvider>
       <PaperProvider>
-        <Stack screenOptions={{ contentStyle: { backgroundColor: "#e0e5e0" } }}>
+        <Stack screenOptions={{ contentStyle: { backgroundColor: "#DCDBDE" } }}>
           <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen
             name="(drawer)"
@@ -35,6 +32,5 @@ export default function RootLayout() {
         <StatusBar barStyle={"light-content"} />
       </PaperProvider>
     </SafeAreaProvider>
-    // </Provider>
   );
 }

@@ -32,7 +32,7 @@ const DrawerContent = (props: any) => {
             size={60}
             label="A"
             color="white"
-            style={{ backgroundColor: "#ba0f23" }}
+            style={{ backgroundColor: "#af0202" }}
           />
           <Text className="pl-[10%] text-[#1D1D2E] text-[22px] font-medium">
             Anas
@@ -42,14 +42,14 @@ const DrawerContent = (props: any) => {
           <DrawerItem
             style={{ padding: 0, width: "100%" }}
             icon={({ color, size }) => (
-              <Feather name="user" size={35} color={"#a90606"} />
+              <Feather name="user" size={35} color={"#af0202"} />
             )}
             label={"Profile"}
             onPress={() => {
               router.push("profile");
             }}
             labelStyle={{
-              color: "#a90606",
+              color: "#000000",
               fontWeight: "bold",
               fontSize: 20,
             }}
@@ -57,14 +57,14 @@ const DrawerContent = (props: any) => {
           <DrawerItem
             style={{ padding: 0, width: "100%" }}
             icon={({ color, size }) => (
-              <Feather name="settings" size={35} color={"#a90606"} />
+              <Feather name="settings" size={35} color={"#af0202"} />
             )}
             label={"Settings"}
             onPress={() => {
               router.push("settings");
             }}
             labelStyle={{
-              color: "#a90606",
+              color: "#000000",
               fontWeight: "bold",
               fontSize: 20,
             }}
@@ -72,14 +72,14 @@ const DrawerContent = (props: any) => {
           <DrawerItem
             style={{ padding: 0, width: "100%" }}
             icon={({ color, size }) => (
-              <Feather name="alert-circle" size={35} color={"#a90606"} />
+              <Feather name="alert-circle" size={35} color={"#af0202"} />
             )}
             label={"About the app"}
             onPress={() => {
               router.push("/(drawer)/(tabs)/Map");
             }}
             labelStyle={{
-              color: "#a90606",
+              color: "#000000",
               fontWeight: "bold",
               fontSize: 20,
             }}
@@ -90,7 +90,7 @@ const DrawerContent = (props: any) => {
             labelStyle={{ color: "white" }}
             icon="logout"
             mode="contained"
-            className="bg-[#a90606] text-white mt-[10%] w-[70%] rounded-3xl"
+            className="bg-[#af0202] text-white mt-[10%] w-[70%] rounded-3xl"
             onPress={() => {
               router.push("/");
             }}

@@ -42,7 +42,7 @@ const Dashboard = () => {
           <Icon size={35} source="wifi-sync" color="#fff"></Icon>
         </View>
         <PModal inOpen={ModalOpen} setModalOpen={setModalOpen}>
-          <PackageContent />
+          <PackageContent setModalOpen={setModalOpen} />
         </PModal>
         <View className=" h-[87%] w-[100%]  bg-[#fffcfc] justify-center items-center">
           <View className="h-[35%] w-full items-center justify-center flex-row ">

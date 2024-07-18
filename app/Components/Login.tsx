@@ -121,7 +121,9 @@ const Login = () => {
               outlineColor="#C4C4C4"
               placeholderTextColor="#C4C4C4"
               textColor="#0F0017"
+              secureTextEntry
               autoCapitalize="none"
+              textContentType="password"
               value={password}
               onChangeText={(e) => setPassword(e)}
               ref={(input: any) => {
@@ -143,19 +145,19 @@ const Login = () => {
               label="Remember Me"
               status={checked}
               style={{ backgroundColor: "white" }}
-              // onPress={(e) => {
-              //   setChecked((prev) => {
-              //     const next = prev === "unchecked" ? "checked" : "unchecked";
-              //     (async () => {
-              //       try {
-              //         await AsyncStorage.setItem("my-key", next);
-              //       } catch (e) {
-              //         console.log(e);
-              //       }
-              //     })();
-              //     return next;
-              //   });
-              // }}
+              onPress={(e) => {
+                setChecked((prev) => {
+                  const next = prev === "unchecked" ? "checked" : "unchecked";
+                  (async () => {
+                    try {
+                      await AsyncStorage.setItem("my-key", next);
+                    } catch (e) {
+                      console.log(e);
+                    }
+                  })();
+                  return next;
+                });
+              }}
               uncheckedColor="#0F0017"
               color="#C0091E"
             />
@@ -177,3 +179,4 @@ const Login = () => {
 };
 
 export default Login;
+21;

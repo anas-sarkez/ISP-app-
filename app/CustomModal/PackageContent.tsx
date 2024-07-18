@@ -1,34 +1,19 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Alert,
-  Platform,
-  ScrollView,
-} from "react-native";
+import { View, Text, StyleSheet, Alert, ScrollView } from "react-native";
 import React, { useState } from "react";
-import {
-  Button,
-  IconButton,
-  List,
-  RadioButton,
-  TextInput,
-} from "react-native-paper";
+import { Button, List } from "react-native-paper";
 import { confirm } from "../helpers/confirm";
 import { packege } from "../helpers/packege";
 
 import * as Notifications from "expo-notifications";
-const PackageContent = () => {
-  const [radioValue, setRadioValue] = useState("system");
+import useStore from "../store/store";
+const PackageContent = ({ setModalOpen }: any) => {
   const [text, setText] = useState("");
   // const [expanded, setExpanded] = useState(true);
   const [selectedPackage, setSelectedPackage] = useState(packege.limited[1]);
   // const handlePress = () => setExpanded(!expanded);
-  const [checkCard, setCheckCard] = useState(true);
-  const [balance, setBalance] = useState(0);
-  const [cardNo, setCardNo] = useState("");
   const [valid, setValid] = useState(false);
-
+  const balance = useStore((state) => state.balance);
+  const decBalance = useStore((state) => state.decBalance);
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldShowAlert: true,
@@ -44,21 +29,24 @@ const PackageContent = () => {
       }}
       className="w-full h-[88%] rounded-t-3xl bg-[#fff] "
     >
-      <View className="w-[95%] mt-[5%] mb-1 border-b-2 bg-[#ffffff] border-[#1D1D2E]">
+      <View
+        onTouchEnd={() => setModalOpen(false)}
+        className="w-[95%] mt-[5%] mb-1 border-b-2 bg-[#ffffff] border-[#1D1D2E]"
+      >
         <Text className="text-[20px] py-[3%] text-center  font-bold text-[#1D1D2E]">
-          إدارة الباقات
+          Package manager
         </Text>
       </View>
       <ScrollView>
-        <View className="w-full flex-row justify-center items-center mt-[6%]">
+        <View className="w-full flex-row justify-center items-center mt-[16%]">
           <View className="w-[75%]  justify-between items-center">
-            <Text className="text-[16px] font-bold text-[#1D1D2E]">
-              الباقة:{" "}
+            <Text className="text-[18px] font-bold text-[#1D1D2E]">
+              Current Package:{" "}
               <Text className="font-semibold ">
                 {selectedPackage.name},
                 <Text className={valid ? "text-green-500" : "text-red-500"}>
                   {" "}
-                  {valid ? "صالحة" : "منتهية"}
+                  {valid ? "valid" : "expired"}
                 </Text>
               </Text>
             </Text>
@@ -67,7 +55,7 @@ const PackageContent = () => {
               labelStyle={{ color: "white" }}
               mode="contained"
               icon="autorenew"
-              className="bg-[#1D1D2E] text-white mt-4 w-[70%] rounded-xl"
+              className="bg-[#1D1D2E] text-white mt-[9%] w-[70%] rounded-xl"
               onPress={async () => {
                 if (valid) {
                   Alert.alert(
@@ -89,7 +77,7 @@ const PackageContent = () => {
                     );
                     if (shouldContinue) {
                       setValid(true);
-                      setBalance(balance - selectedPackage.price);
+                      decBalance(selectedPackage.price);
                       await Notifications.scheduleNotificationAsync({
                         content: {
                           title: "Success ✅",
@@ -109,28 +97,28 @@ const PackageContent = () => {
                 }
               }}
             >
-              تجديد الباقة الحالية
+              Renew Package
             </Button>
           </View>
         </View>
         <View className="w-full justify-center pt-[3%] items-center">
           <View className="w-[90%] py-3">
-            <Text className="text-[14px] text-right font-medium text-[#C0091E]">
-              تغيير الباقة
+            <Text className="text-[14px] mt-[9%] text-left font-medium text-[#C0091E]">
+              Change package
             </Text>
           </View>
 
           <View className="w-[90%] py-3">
             <View className="w-full">
               <List.Accordion
-                title="الباقات المحدودة"
+                title=" Limited Package"
                 style={{
                   backgroundColor: "#fff",
                   borderBottomWidth: 1,
                   borderColor: "#C0091E",
                   width: "100%",
                 }}
-                titleStyle={{ color: "#1D1D2E", textAlign: "right" }}
+                titleStyle={{ color: "#1D1D2E", textAlign: "left" }}
                 left={(props) => (
                   <List.Icon
                     {...props}
@@ -214,7 +202,7 @@ const PackageContent = () => {
                                   "Success",
                                   "Package changed successfully!"
                                 );
-                                setBalance(balance - item.price);
+                                decBalance(item.price);
                               } else return;
                             }
                             if (balance < item.price) {
@@ -232,13 +220,13 @@ const PackageContent = () => {
               </List.Accordion>
             </View>
             <List.Accordion
-              title="الباقات الغير محدودة"
+              title="Unlimited Package"
               style={{
                 backgroundColor: "#fff",
                 borderBottomWidth: 1,
                 borderColor: "#C0091E",
               }}
-              titleStyle={{ color: "#1D1D2E", textAlign: "right" }}
+              titleStyle={{ color: "#1D1D2E", textAlign: "left" }}
               left={(props) => (
                 <List.Icon {...props} icon="infinity" color="#C0091E" />
               )}
@@ -246,9 +234,10 @@ const PackageContent = () => {
               {packege.unlimited.map((item, index) => (
                 <List.Accordion
                   key={index}
-                  style={{ backgroundColor: "#fff" }}
+                  style={{ backgroundColor: "#fff", borderRadius: 12 }}
                   title={item.name}
                   titleStyle={{ color: "#1D1D2E" }}
+                  rippleColor={"#C00e1E1f"}
                   left={(props) => (
                     <List.Icon
                       {...props}
@@ -317,7 +306,7 @@ const PackageContent = () => {
                                 "Success",
                                 "Package changed successfully!"
                               );
-                              setBalance(balance - item.price);
+                              decBalance(item.price);
                             } else return;
                           }
                           if (balance < item.price) {

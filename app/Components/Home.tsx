@@ -8,12 +8,13 @@ import { LinearGradient } from "expo-linear-gradient";
 import InfiniteSlider from "./InfiniteSlider";
 import Modal from "../CustomModal/TopUpModal";
 import TopUpcontent from "../CustomModal/TopUpcontent";
+import useStore from "../store/store";
 const Home = () => {
   const progress = useDrawerProgress();
-  const [balance, setBalance] = useState(5);
+
   const statusbar = () => StatusBar.setBarStyle("light-content", true);
   const [ModalOpen, setModalOpen] = useState(false);
-
+  const balance = useStore((state) => state.balance);
   return (
     <View className=" w-full h-[100%]">
       <StatusBar barStyle="light-content" />
@@ -108,12 +109,7 @@ const Home = () => {
             inOpen={ModalOpen}
             withInput={true}
           >
-            <TopUpcontent
-              modalOpen={ModalOpen}
-              balance={balance}
-              setBalance={setBalance}
-              setModalOpen={setModalOpen}
-            />
+            <TopUpcontent modalOpen={ModalOpen} setModalOpen={setModalOpen} />
           </Modal>
         </View>
       </View>

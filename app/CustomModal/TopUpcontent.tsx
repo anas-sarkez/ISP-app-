@@ -4,19 +4,18 @@ import { Button, IconButton, TextInput } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Notifications from "expo-notifications";
 import { confirm } from "../helpers/confirm";
+import useStore from "../store/store";
 const TopUpContent = ({
   modalOpen,
   setModalOpen,
-  balance,
-  setBalance,
 }: {
   modalOpen: boolean;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  balance: number;
-  setBalance: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const [checkCard, setCheckCard] = useState(true);
   const [cardNo, setCardNo] = useState("");
+  const incBalance = useStore((state) => state.incBalance);
+  const balance = useStore((state) => state.balance);
 
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -88,22 +87,61 @@ const TopUpContent = ({
                 "Do you want to proceed?"
               );
               if (!shouldContinue) return;
+              if (shouldContinue) {
+                try {
+                  const res = await fetch(
+                    "https://isp-server.onrender.com/user/1",
+                    {
+                      method: "PATCH",
+                      body: JSON.stringify({
+                        card: Number(cardNo),
+                      }),
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                    }
+                  );
 
-              if (cardNo === "12345678" && shouldContinue) {
-                await Notifications.scheduleNotificationAsync({
-                  content: {
-                    title: "Sela",
-                    body: "You have added 10 LYD 💰",
-                    sound: Platform.OS === "android" ? undefined : "default",
-                  },
-                  trigger: {
-                    seconds: 1,
-                  },
-                });
-                setBalance((prevBalance) => prevBalance + 10);
-                setCardNo("");
-              } else {
-                Alert.alert("Error", "Invalid Card Number");
+                  console.log(res.body, "\n", res.headers, "\n");
+                  console.log(res.ok, "\n", res.status, "\n");
+                  console.log(res.status);
+                  if (res.status === 200) {
+                    incBalance(10);
+                    setCardNo("");
+                    Notifications.scheduleNotificationAsync({
+                      content: {
+                        title: "Success ✅",
+                        body: "Card Added",
+                        sound:
+                          Platform.OS === "android" ? undefined : "default",
+                      },
+                      trigger: {
+                        seconds: 1,
+                      },
+                    });
+                  } else {
+                    Alert.alert("Error", "Invalid Card Number");
+                  }
+                } catch (error) {
+                  console.log(error);
+                  Alert.alert("Error", "Something went wrong");
+                }
+              }
+              // if (cardNo === "12345678" && shouldContinue) {
+              //   await Notifications.scheduleNotificationAsync({
+              //     content: {
+              //       title: "Sela",
+              //       body: "You have added 10 LYD 💰",
+              //       sound: Platform.OS === "android" ? undefined : "default",
+              //     },
+              //     trigger: {
+              //       seconds: 1,
+              //     },
+              //   });
+              //   setBalance((prevBalance) => prevBalance + 10);
+              //   setCardNo("");
+              // }
+              else {
               }
             }}
           >
