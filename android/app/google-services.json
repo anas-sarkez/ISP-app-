@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "242200888620",
+    "project_id": "sela-messaging",
+    "storage_bucket": "sela-messaging.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:242200888620:android:9762873edb34a91a9e5889",
+        "android_client_info": {
+          "package_name": "sela.ahmed"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLfc5bTQ-8DVVecs5QZiwnSVBm7pEr9Vc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
