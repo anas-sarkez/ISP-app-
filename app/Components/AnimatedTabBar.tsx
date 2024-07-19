@@ -22,7 +22,7 @@ import Animated, {
 import Lottie from "lottie-react-native";
 import { Icon } from "react-native-paper";
 import { useDrawerStatus } from "@react-navigation/drawer";
-
+import notificationArray from "../helpers/notificationArray";
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 
 const AnimatedTabBar = ({
@@ -187,10 +187,10 @@ const TabBarComponent = ({
             source="home"
             size={30}
           />
-        ) : label === "map" ? (
+        ) : label === "notification" ? (
           <Icon
             color={isFocused && drawerProgress != "open" ? "#b00909" : "#000"}
-            source="transmission-tower"
+            source={notificationArray.length > 0 ? "bell-badge" : "bell"}
             size={30}
           />
         ) : label === "dashboard" ? (

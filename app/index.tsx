@@ -13,6 +13,6 @@ export default function Index() {
 
   user();
 
-  return <Login />;
-  return Redirect({ href: "/profile" });
+  // return <Login />;
+  return Redirect({ href: "/home" });
 }

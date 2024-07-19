@@ -42,7 +42,8 @@ const _layout = () => {
         <Tabs.Screen name="home" />
 
         <Tabs.Screen name="dashboard" />
-        <Tabs.Screen name="map" />
+        <Tabs.Screen name="notification" />
+        {/* <Tabs.Screen name="map" /> */}
         {/* <Tabs.Screen
         name="setting"
         options={{
