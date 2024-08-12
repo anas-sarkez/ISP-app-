@@ -7,24 +7,24 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { ScrollView } from "react-native-gesture-handler";
-import notificationArray from "../../helpers/notificationArray";
+import useStore from "../../store/notificationsStore";
 import { Icon } from "react-native-paper";
 const Notification = ({
-  item: { id, title, body, date },
+  item: { _id, title, body },
   opened,
   setOpened,
 }: {
-  opened: number;
-  setOpened: React.Dispatch<React.SetStateAction<number>>;
-  item: { id: number; title: string; body: string; date: Date };
+  opened: string;
+  setOpened: React.Dispatch<React.SetStateAction<string>>;
+  item: { _id: string; title: string; body: string };
 }) => {
   return (
     <TouchableOpacity
-      key={id}
+      key={_id}
       activeOpacity={0.7}
       onPress={() => {
-        if (opened === id) setOpened(-1);
-        else setOpened(id);
+        if (opened === _id) setOpened("-1");
+        else setOpened(_id);
 
         // Alert.alert(item.title, item.body, [
         //   {
@@ -34,7 +34,7 @@ const Notification = ({
         // ]);
       }}
       className={`w-[99%] ${
-        opened === id ? "full  " : "h-[100px]  relative"
+        opened === _id ? "full  " : "h-[100px]  relative"
       } bg-white overflow-hidden border-2 border-[#ff000009]  rounded-2xl  m-[5] shadow-2xl`}
     >
       <Text className="text-[20px] ml-[8%]  mt-5 text-start font-bold text-[#6e6c6c] ">
@@ -45,7 +45,9 @@ const Notification = ({
           style={{ fontWeight: "900", fontVariant: ["small-caps"] }}
           className="text-[25px] my-[3%] text-left ml-[8%]  text-[#331919]"
         >
-          {opened !== id ? body.slice(0, 15) + "..." : body}
+          {opened !== _id && body.length > 15
+            ? body.slice(0, 15) + "..."
+            : body}
         </Text>
       </View>
       <View className="absolute top-4 right-[5%] items-center">
@@ -55,7 +57,8 @@ const Notification = ({
   );
 };
 const notifications = () => {
-  const [opened, setOpened] = useState(-1);
+  const [opened, setOpened] = useState("-1");
+  const notificationArray = useStore((state) => state.notifications);
   return (
     <View className="flex-1 bg-[#f2f2f2]">
       <View className="bg-white justify-end pb-[5%] items-center h-[13%]">
@@ -76,7 +79,7 @@ const notifications = () => {
                 <Notification
                   opened={opened}
                   setOpened={setOpened}
-                  key={item.id}
+                  key={item._id}
                   item={item}
                 />
               ))}

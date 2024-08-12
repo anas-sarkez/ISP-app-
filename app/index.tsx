@@ -8,7 +8,7 @@ export default function Index() {
       method: "GET",
     });
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
   };
 
   user();

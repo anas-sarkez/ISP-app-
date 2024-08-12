@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["Sarkiz"]
+  "cSpell.words": ["Sarkiz"],
+  "java.compile.nullAnalysis.mode": "disabled"
 }
